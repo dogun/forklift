@@ -1,0 +1,33 @@
+准备工具：带电源的 ROCK Pi S 板
+                一张 microSD 卡，大于 8GB，10 级或更高microSD 读卡器，USB 读卡器或笔记本电脑上的 SD 读卡器
+                运行 Windows 或 Linux 或 MacOS 的 PC/笔记本电脑
+
+下载烧录软件：https://etcher.balena.io/
+下载镜像：https://wiki.radxa.com/RockpiS/downloads
+                下载ROCK Pi S Ubuntu
+将镜像烧入至tf卡后，插入ROCK PI S板，将板子与电脑连接，并接上网线
+使用流程
+step1：ssh rock@设备的 ip    //用户名：rock  密码：rock
+step2：更新必要的包
+            $ sudo apt-get update
+            $ sudo apt-get install -y apt-utils # without this, the adb connection might break during installation of rockchip-adb
+            $ sudo apt-get install -y rockchip-overlay
+            $ sudo apt-get install -y linux-4.4-rockpis-latest
+            $ sudo apt-get install -y rtl8723ds-firmware rockchip-adbd resize-assistant
+            $ sudo apt-get install -y rockpis-dtbo # For those ROCK Pi S system images released before March 1st, 2020
+step3：连接无线网络
+            $ sudo su
+            $ nmcli r wifi on
+            $ nmcli dev wifi
+            $ nmcli dev wifi connect "wifi_name" password "wifi_password"   //如果有特殊字符则使用单引号 'wifi_password'
+step4：安装软件
+            sudo apt install python3-pip   //安装pip
+            $ apt-get install libcurl4-gnutls-dev libexpat1-dev gettext \libz-dev libssl-dev
+            $ apt-get install git                //安装git
+            $ git --version                       //查询git安装版本
+step5：安装KIAUH
+            sudo apt-get update && sudo apt-get install git -y
+            cd ~ && git clone https://github.com/dw-0/kiauh.git
+            ./kiauh/kiauh.sh
+            安装1.Klipper 2.Moonraker 4.Fluidd
+
