@@ -1,0 +1,137 @@
+Category,Description,Qty,Notes
+Fasteners,M5x40 SHCS,22,M5x40 SHCS
+,M5x30 BHCS,22,M5x30 六角钢
+,M5x16 BHCS,35,M5x16 六角钢
+,M5x10 BHCS,35,M5x10 六角钢
+,M5 Hexnut,16,M5 六角螺母
+,M5 Post-install T-nut,68,M5 后安装 T 形螺母
+,M5 1mm Shim,42,M5 1mm 垫片
+,M4x6 BHCS,7,M4x6 BHCS
+,M4 Knurled Nut (DIN 466-B),4,M4 滚花螺母 (DIN 466-B)
+,M3x40 SHCS,30,M3x40 SHCS
+,M3x30 SHCS,25,M3x30 SHCS
+,M3x20 SHCS,22,M3x20 SHCS
+,M3x16 SHCS,20,M3x16 SHCS
+,M3x12 SHCS,41,M3x12 SHCS
+,M3x10 FHCS,4,M3x10 FHCS
+,M3x6 FHCS,8,M3x6 FHCS
+,M3x8 SHCS,180,M3x8 SHCS
+,M3x6 BHCS,11,M3x6 BHCS
+,M3 Hexnut,6,M3六角螺母
+,M3 Post-install T-nut,96,M3 后安装 T 型螺母
+,M3 Hammer Head T-nuts,60,M3 锤头 T 型螺母
+,M3 Washer,3,M3垫圈
+,M3 Threaded Insert (M3x5x4),110,M3 螺纹嵌件 (M3x5x4)
+,M2x10 Self-tapping Screw,16,M2x10 自攻螺钉
+,,,
+,,,
+Motion,GT2 80T Pulley (5mm ID 6mm W),4,GT2 80T 滑轮（5mm 内径 6mm 宽）
+,GT2 20T Pulley (5mm ID 6mm W),3, GT2 20T 皮带轮 (5mm 内径 6mm 宽)
+,GT2 20T Pulley (5mm ID 9mm W),4, GT2 20T 滑轮（5mm 内径 9mm 宽）
+,GT2 16T Pulley (5mm ID 6mm W),4, GT2 16T 滑轮（5mm 内径 6mm 宽）
+,GT2 20T Toothed Idler (5mm ID 6mm W),2,GT2 20T 齿形惰轮（5mm 内径 6mm 宽）
+,GT2 20T Toothed Idler (5mm ID 9mm W),4, GT2 20T 齿形惰轮（5mm 内径 9mm 宽）
+,F695 Bearing,20,F695轴承
+,625 Bearing,12,625轴承
+,?5x60mm Shaft,4, ?5x60mm 轴，D 形切割
+,?5x35mm Shaft (trim to size),1, ?5x35mm 轴（按尺寸修剪）
+,GT2 Belt Loop (6mm W) - 188mm,4,GT2 皮带环（6 毫米宽）- 188 毫米
+,GT2 Open Belt LL-2GT-9 (9mm wide) - 1100mm,4,GT2 开放式皮带 LL-2GT-9（9 毫米宽）- 1100 毫米
+,BMG Extruder Components Kit,1,BMG 挤出机组件套件
+,Linear Rail MGN9H 350mm,6,直线导轨MGN9H 350mm
+,Linear Rail MGN12H 350mm,1,直线导轨MGN12H 350mm
+,GT2 Open Belt LL-2GT-6 (6mm wide) - 1800mm,2,GT2 开放式皮带 LL-2GT-6 (6mm 宽) - 1800mm
+,,,
+,,,
+Electronics,Omron D2F-01L Micro Switch,3,欧姆龙 D2F-01L 微动开关
+,Inductive Probe (See sourcing guide),1,感应探头
+,Hotend Kit (24V),1,热端套件
+,40x40x20 Centrifugal Fan (24V),1, 40x40x20 离心风扇（24V
+,40x40x10 Axial Fan (24V),1,40x40x10 轴流风扇 (24V)
+,Mini 12864 Display,1,迷你12864显示器
+,ZF Rocker Switch DPST 16A ON-OFF,1,ZF 摇杆开关 DPST 16A ON-OFF
+,TycoElectronics 10EGG1-1 Filtered Power Inlet (NA/UK),1, TycoElectronics 10EGG1-1 滤波电源入口（北美/英国）
+,TycoElectronics 10EGG1-2 Filtered Power Inlet (EU),1, TycoElectronics 10EGG1-2 滤波电源入口（欧盟）
+,Medium Blow Fuse 5x20mm 4A (220V mains),2,中型熔断保险丝 5x20mm 4A（220V 电??源）
+,Medium Blow Fuse 5x20mm 8A (120v mains),1, 中型熔断保险丝 5x20mm 8A（120v 电源）
+,Keystone CAT6 Insert (Optional),1, Keystone CAT6 插入件（可选）
+,60x60x20 Fan (24V),3, 60x60x20 风扇（24V）
+,Controller with 7+ Stepper outputs,1,具有 7 个以上步进输出的控制器
+,TMC2209 Stepper Motor Driver,7,TMC2209 步进电机驱动器
+,USB Cable for selected controller,1, 适用于选定控制器的 USB 电缆
+,RaspberryPi 3B+ or better,1, RaspberryPi 3B+ 或更高
+,Mean Well LRS-200-24 PSU,1, 明纬 LRS-200-24 电源
+,Mean Well RS-25-5 PSU,1, 明纬 RS-25-5 PSU
+,Omron G3A-210B-DC5 SSR,1, 欧姆龙 G3A-210B-DC5 SSR
+,DIN Rail Mount Bracket for G3A SSR,1,G3A SSR 的 DIN 导轨安装支架
+,BAT85 Diode,1, BAT85二极管
+,C13 Power Cord,1,C13 电源线
+,Thermal Fuse (125C),1, 热熔断器（125C）
+,NEMA17 Motor 17HS19-2004S,6, NEMA17 电机 17HS19-2004S
+,NEMA17 Motor 17HS08-1004S,1, NEMA17 电机 17HS08-1004S
+,,,
+,,,
+Vibration Management,Rubber Foot (1.5x.75", 38x19mm)         4,橡胶脚垫（1.5x.75"，38x19mm）
+,,,
+,,,
+Frame,OpenBuilds Billet Angle Corner Connector (2020),4,OpenBuilds 钢坯角角连接器 (2020)
+,Misumi HFSB5-2020-290,1,
+,DIN 3 Rails (35mm W) - 415mm,2,DIN 3 导轨（35 毫米宽）- 415 毫米
+,Misumi HFSB5-2020-380,1,
+,Misumi HFSB5-2020-400,2,
+,Misumi HFSB5-2020-420-TPW,10,
+,Misumi HFSB5-2020-480-LCP-RCP,4,
+,,,
+,,,
+Misc,Fume Extractor Carbon Filter Element,1, 排烟器碳滤芯
+,4mm Threaded Bowden Coupler,1,4mm 螺纹鲍登耦合器
+,3M VHB Tape 5952,1, 3M VHB 胶带 5952
+,Loctite Blue Threadlocker Stick,1,乐泰蓝色螺纹锁固胶棒
+,Mobil EP1/2 Grease,1,美孚 EP1/2 润滑脂
+,Single Sided Foam Tape 1mm Thick (5m),1,单面泡棉胶带 1mm 厚 (5m)
+,Single Sided Foam Tape 3mm Thick (5m),1, 单面泡棉胶带 3mm 厚 (5m)
+,?6x3mm Neodimium Magnet,8, ?6x3mm 钕磁铁
+,PTFE Tube (4mm OD 3mm ID) - 1000mm,1, PTFE 管（4mm 外径 3mm 内径）- 1000mm
+,PTFE Tube (4mm OD 2mm ID) - 300mm,1, PTFE 管（4mm 外径 2mm 内径）- 300mm
+,,,
+,,,
+Cables,Nylon Cable Ties, Small (.07-.10"  |1.8-2.7mm wide) |         42  , 尼龙扎带，小号（0.07-0.10 英寸，1.8-2.7 毫米宽）
+,18AWG Wire (10ft/3m total),1, 18AWG 电线（总共 10 英尺/3m）
+,20AWG High-flex Wire (10ft/3m total),1, 20AWG 高柔性电线（总共 10 英尺/3m）
+,22-24AWG High-flex Wire (min 19 strand)(250ft/76m total),1, 22-24AWG 高柔性电线（最少 19 股）（总共 250 英尺/76 m）
+,Female Spade Crimp Terminal (18-22AWG, .250"  | 6.35mm)  |                         7, 母铲形压接端子（18-22AWG，0.250 英寸，6.35 毫米）
+,Fork Spade Crimp Terminal (18-22AWG, #10)                                        5, 叉形压接端子（18-22AWG，#10）
+,Ring Crimp Terminal (16-22AWG, #6)                                         1, 环形压接端子（16-22AWG，#6）
+,JST XH Connector, 3 Position Male/Female Pair plus Pins       1, JST XH 连接器，3 位公/母对加引脚
+,Connector kit matching your controller choice (usually JST-XH),1, 与您选择的控制器相匹配的连接器套件（通常是 JST-XH）
+,Crimp Ferrule Kit (covering sizes 24AWG to 18AWG),1, 压接套圈套件（涵盖尺寸 24AWG 至 18AWG）
+,MicroFit3 Connector Plug 4 Position,4, MicroFit3 连接器插头 4 位
+,MicroFit3 Connector Plug 3 Position,1, MicroFit3 连接器插头 3 位
+,MicroFit3 Connector Plug 2 Position,2,MicroFit3 连接器插头 2 位
+,MicroFit3 Connector Receptacle 4 Position,4, MicroFit3 连接器插座 4 位
+,MicroFit3 Connector Receptacle 3 Position,1, MicroFit3 连接器插座 3 位
+,MicroFit3 Connector Receptacle 2 Position,2, MicroFit3 连接器插座 2 位
+,MLX Power Receptacle 3 Position (bed wiring),1, MLX 电源插座 3 位（床接线）
+,MLX Power Plug 3 Position,1, MLX 电源插头 3 位
+,MLX Male Pin,6, MLX 公针
+,MLX Female Pin,6, MLX 母针
+,MicroFit3 Female Pin,40, MicroFit3 母针
+,MicroFit3 Male Pin,40, MicroFit3 公针
+,WAGO 221-415 Lever-Nuts,3, WAGO 221-415 杠杆螺母
+,VORON XY ZipChain (printed a/b link pairs),22,VORON XY ZipChain（打印 a/b 链接对）
+,VORON Z ZipChain (printed a/b link pairs),12, VORON Z ZipChain（印刷 a/b 链接对）
+,VORON XY ZipChain (printed ends),4,VORON XY ZipChain（印刷端）
+,VORON Z ZipChain (printed ends),2, VORON Z ZipChain（末端印刷）
+,,,
+,,,
+Panels,Coroplast Sheet - 419x419x4 mm,2,科络普板材 - 419x419x4 毫米
+,Coroplast Sheet - 433x453x4 mm,1,科络普板材 - 433x453x4 毫米
+,Acrylic Sheet Clear - 440*460*3,1,透明亚克力板 - 440460x3 mm
+,Acrylic Sheet Clear - 433x453x3 mm,2, 透明亚克力板 - 433x453x3 mm
+,Acrylic Sheet Clear - 433x433x3 mm,1, 透明亚克力板 - 433x433x3 mm
+,,,
+,,,
+Buildplate,MIC6 5/16" Plate - 12"x12",1, MIC6 5/16" 板 - 12"x12"
+,Adhesive Magnetic Sheet - 12"x12",1, 粘性磁片 - 12"x12"
+,Spring Steel Flexible Print Surface - 12"x12",1, 弹簧钢柔性打印表面 - 12"x12"
+,Keenovo Silicone AC Heater w/ thermistor - 250x250mm (450W),1, Keenovo 硅胶交流加热器，带热敏电阻 - 250x250mm (450W)
