@@ -1,8 +1,11 @@
 #!/bin/bash
 
-host=$1
-port=$2
+name=$1
+action=$2
 macro=$3
 
-url="http://${host}:${port}/printer/gcode/script?script=${macro}"
+
+url="http://192.168.7.1/forklift/remote_run.php?printer=${name}&action=${action}&macro=${macro}"
 curl $url
+
+
