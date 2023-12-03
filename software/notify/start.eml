@@ -1,8 +1,0 @@
-To: 2246761@qq.com
-From: 2246761@qq.com
-Subject: 打印机{print_name}开始打印-{gcode_name}
-
-时间：{time}
-打印机{print_name}开始打印 - {gcode_name}
-
-
