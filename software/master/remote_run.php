@@ -26,6 +26,8 @@ if ($action == 'call_forklift') {
 	$host = $r['host'];
 	$port = $r['port'];
 	$url = "http://$host:$port/printer/gcode/script?script=SHOULIAO";
-	echo file_get_contents($url);
+	$sql = "insert into action_queue (action, content, gmt_created, gmt_modified, status) values('call_forklift', '$url', ".time().", 0, 0)";
+	$r = $mysqli->query($sql) or die('INSERT QUEUE ERROR');
+	echo "QUEUED";
 
 }
