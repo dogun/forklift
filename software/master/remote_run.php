@@ -7,21 +7,19 @@ $macro = @$_GET['macro'];
 $host = @$_SERVER['REMOTE_ADDR'];
 $printer = @$_GET['printer'];
 
-echo "$printer $action $macro $host \n";
+_log('INFO', "$printer $action $macro $host", 0, 'HTTP');
 
 if ($action == 'call_forklift') {
-	$pr = $mysqli->query("select * from printers where name='".$mysqli->real_escape_string($printer)."'");
-	$r = $pr->fetch_assoc();
+	$r = _query_printer_by_name($printer);
 	if (!$r) {
-		die('ERROR: PRINTER NOT FOUND');
+		die('PRINTER NOT FOUND:'.$printer);
+	}
+	$forklift_id = $r['forklift_id'];
+	$r = _query_forklift($forklift_id);
+	if (!$r) {
+		die('FORKLIFT NOT FOUND:'.$forklift_id);
 	}
 
-	$forklift_id = $r['forklift_id'];
-	$fl = $mysqli->query("select * from forklifts where id=$forklift_id");
-	$r = $fl->fetch_assoc();
-	if (!$r) {
-		die('ERROR: FORKLIFT NOT FOUND');
-	}
 	$host = $r['host'];
 	$port = $r['port'];
 

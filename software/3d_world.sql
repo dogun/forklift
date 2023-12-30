@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 29, 2023 at 02:24 PM
+-- Generation Time: Dec 30, 2023 at 03:47 AM
 -- Server version: 8.0.35
 -- PHP Version: 8.2.12
 
@@ -148,6 +148,12 @@ ALTER TABLE `action_queue`
 -- AUTO_INCREMENT for table `forklifts`
 --
 ALTER TABLE `forklifts`
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `log`
+--
+ALTER TABLE `log`
   MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
