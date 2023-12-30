@@ -7,46 +7,45 @@ $macro = @$_GET['macro'];
 $host = @$_SERVER['REMOTE_ADDR'];
 $printer = @$_GET['printer'];
 
-_log('INFO', "$printer $action $macro $host", 0, 'HTTP');
+_log('INFO', "$printer $action $macro @ $host", 0, 'HTTP');
 
 if ($action == 'call_forklift') {
 	$r = _query_printer_by_name($printer);
 	if (!$r) {
 		die('PRINTER NOT FOUND:'.$printer);
 	}
+	$printer_id = $r['id'];
 	$forklift_id = $r['forklift_id'];
-	$r = _query_forklift($forklift_id);
-	if (!$r) {
+	$f_r = _query_forklift($forklift_id);
+	if (!$f_r) {
 		die('FORKLIFT NOT FOUND:'.$forklift_id);
 	}
 
-	$host = $r['host'];
-	$port = $r['port'];
+	$host = $f_r['host'];
+	$port = $f_r['port'];
 
-	if (false) {
-		$url = "http://$host:$port/printer/gcode/script?script=SHOULIAO";
-		$sql = "insert into action_queue (action, content, gmt_created, gmt_modified, status) values('call_forklift', '$url', ".time().", 0, 0)";
-		$r = $mysqli->query($sql) or die('INSERT QUEUE ERROR');
-		echo "QUEUED";
+	if (!$macro) { //没有指定宏，则异步收料
+		$str = _queue_collect_serialize($printer_id, $forklift_id);
+		_queue($printer_id, M_TYPE::PRINTER->value, QUEUE_ACTION::CALL_FORKLIFT_COLLECT->value, $str);
+		echo 'QUEUED';
 	} else {
-		$url = "http://$host:$port/printer/gcode/script?script=$macro";
-		echo $url."\n";
-		$res = file_get_contents($url);
+		$res = _remote_run_macro($printer_id, M_TYPE::PRINTER->value, $forklift_id, $action, $host, $port, $macro);
 		echo $res;
 	}
-
-}
-if ($action == 'call_printer') {
-	$printer = 'NO.2';
-	$pr = $mysqli->query("select * from printers where name='".$mysqli->real_escape_string($printer)."'");
-	$r = $pr->fetch_assoc();
-	if (!$r) {
-		die('ERROR: PRINTER NOT FOUND');
+} elseif ($action == 'call_printer') {
+	$f_r = _query_forklift_by_name($printer);
+	if (!$f_r) {
+		die('FORKLIFT NOT FOUND:'.$printer);
 	}
-	$host = $r['host'];
-	$port = $r['port'];
-	$url = "http://$host:$port/printer/gcode/script?script=$macro";
-	echo $url."\n";
-	$res = file_get_contents($url);
+	$f_id = $f_r['id'];
+	$p_id = $f_r['now_printer'];
+	
+	$p_r = _query_printer($p_id);
+	if (!$p_r) {
+		die('PRINTER NOT FOUND:'.$p_id);
+	}
+	$host = $p_r['host'];
+	$port = $p_r['port'];
+	$res = _remote_run_macro($f_id, M_TYPE::FORKLIFT->value, $p_id, $action, $host, $port, $macro);
 	echo $res;
 }
