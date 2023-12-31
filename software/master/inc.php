@@ -34,6 +34,11 @@ enum QUEUE_ACTION:string {
 	case CALL_FORKLIFT_COLLECT = 'CALL_FORKLIFT_COLLECT';
 }
 
+function __log($log) {
+	$now = date('Y-m-d H:i:s');
+	echo "$now $log\n";
+}
+
 function _log($level, $log, $m_id, $m_type) {
 	global $mysqli;
 	$m_id = intval($m_id);
@@ -157,4 +162,5 @@ function _remote_run($call_id, $call_type, $target_id, $action, $url) {
 #var_dump(_update_forklift_now_printer(1, 1));
 #var_dump(_remote_run_macro(1, 'PRINTER', 2, 'CALL_FORKLIFT', 'localhost', 80, 'test'));
 #var_dump(_update_task_status(5, 'ERROR'));
-var_dump(_query_ready_task_collect());
+#echo _queue(1, 'PRINTER', 'CALL_FORKLIFT_COLLECT', _queue_collect_serialize(3, 3));
+#var_dump(_query_ready_task_collect());
