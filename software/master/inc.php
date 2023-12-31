@@ -58,6 +58,22 @@ function _query_ready_task() {
 	return $r->fetch_assoc();
 }
 
+function _query_ready_task_collect() {
+	global $mysqli;
+	$r = $mysqli->query("select * from action_queue where action='".QUEUE_ACTION::CALL_FORKLIFT_COLLECT->value."' and status='".QUEUE_STATUS::READY->value."' order by id asc");
+	$arr = array();
+	while (($q = $r->fetch_assoc())) {
+		$content = _queue_collect_unserialize($q['content']);
+		$q['printer_id'] = $content['printer_id'];
+		$q['forklift_id'] = $content['forklift_id'];
+		$forklift_id = $content['forklift_id'];
+		if (!@$arr[$forklift_id]) { //不存在这个叉车，就加入处理，只加入最早的一个
+			$arr[$forklift_id] = $q;
+		}
+	}
+	return $arr;
+}
+
 function _update_task_status($id, $status) {
 	global $mysqli;
 	$id = intval($id);
@@ -141,3 +157,4 @@ function _remote_run($call_id, $call_type, $target_id, $action, $url) {
 #var_dump(_update_forklift_now_printer(1, 1));
 #var_dump(_remote_run_macro(1, 'PRINTER', 2, 'CALL_FORKLIFT', 'localhost', 80, 'test'));
 #var_dump(_update_task_status(5, 'ERROR'));
+var_dump(_query_ready_task_collect());
