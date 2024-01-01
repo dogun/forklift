@@ -1,5 +1,6 @@
 <?php
-$mysqli = new mysqli('localhost', 'root', 'dogunhaha', '3d_world');
+include('pw.php');
+$mysqli = new mysqli('localhost', 'root', $pw, '3d_world');
 
 enum M_TYPE:string {
 	case PRINTER = 'PRINTER';
