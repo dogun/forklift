@@ -49,6 +49,16 @@ function _log($level, $log, $m_id, $m_type) {
 	return $pr;
 }
 
+function _query_log() {
+	global $mysqli;
+	$r = $mysqli->query("select * from log order by id desc");
+	$ret = array();
+	while (($q = $r->fetch_assoc())) {
+		$ret[] = $q;
+	}
+	return $ret;
+}
+
 function _queue($m_id, $m_type, $action, $content) {
 	global $mysqli;
 	$m_id = intval($m_id);
@@ -165,3 +175,4 @@ function _remote_run($call_id, $call_type, $target_id, $action, $url) {
 #var_dump(_update_task_status(5, 'ERROR'));
 #echo _queue(1, 'PRINTER', 'CALL_FORKLIFT_COLLECT', _queue_collect_serialize(3, 3));
 #var_dump(_query_ready_task_collect());
+#var_dump(_query_log());
