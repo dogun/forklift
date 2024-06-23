@@ -1,0 +1,39 @@
+apt install -y sudo
+vi /etc/sudoers
+
+apt install -y net-tools
+apt install -y git
+apt install -y bc
+apt install -y build-essential
+apt install -y linux-headers-6.1.0-21-amd64
+apt install -y openvpn
+apt install -y wpasupplicant
+apt install -y usb-modeswitch
+apt install -y ssmtp
+
+git clone https://github.com/morrownr/8821cu-20210916
+git clone https://github.com/dw-0/kiauh
+git clone https://github.com/dogun/forklift
+ln -s ~/forklift/software/shell/ .
+
+wpa_passphrase ssid pass
+vi /etc/network/interfaces
+allow-hotplug wlx986ee820d9e9
+iface wlx986ee820d9e9 inet dhcp
+        wpa-ssid xxx
+        wpa-psk xxx
+
+/usr/sbin/usb_modeswitch -K -v 0bda -p 1a2b
+vi /lib/udev/rules.d/40-usb_modeswitch.rules # ATTR{idVendor}=="0bda", ATTR{idProduct}=="1a2b", RUN+="/usr/sbin/usb_modeswitch -K -v 0bda -p 1a2b"
+
+
+cp forklift/software/ssmtp.conf /etc/ssmtp/
+
+
+ln -s ~/forklift/software/main.cfg printer_1_data/config/
+ln -s ~/forklift/software/main.cfg printer_2_data/config/
+ln -s ~/forklift/software/main.cfg printer_3_data/config/
+ln -s ~/forklift/software/main.cfg printer_4_data/config/
+ln -s ~/forklift/software/main.cfg printer_5_data/config/
+
+
