@@ -19,4 +19,6 @@ while (($list = $r->fetch_assoc())) {
 
 foreach ($arr as $v) {
 	echo $v[0].' '.$v[1].'<br />';
+	print_r($v[0]);
 }
+
