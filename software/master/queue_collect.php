@@ -28,10 +28,16 @@ while (true) {
 			$port = $fl['port'];
 			$macro = 'B1'; //TODO 这里要写死吗？
 			$res = _remote_run_macro(0, M_TYPE::QUEUE->value, $task['printer_id'], $action, $host, $port, $macro);
-			if (!$res) { //TODO 失败
+			if (!$res) {
+				__log('run macro error:'.var_dump($res));
 			}
 			$r = _update_task_status($task['id'], QUEUE_STATUS::FINISHED->value);
-			if (!$r) { //TODO 失败
+			if (!$r) { 
+				__log('update task status error:'.var_dump($r));
+			}
+			$r = _update_forklift_now_printer($task['forklift_id'], 0);
+			if (!$r) {
+				__log('update now printer error:'.var_dump($r));
 			}
 			_log(LOG_LEVEL::INFO->value, "COLLECT RUN FINISHED:$task_id $res", 0, M_TYPE::QUEUE->value);
 		} elseif ($fl_status == M_STATUS::RUNNING->value || $fl_status == M_STATUS::MAINTAIN->value) { //正在运行或维护中
