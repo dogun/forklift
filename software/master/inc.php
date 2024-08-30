@@ -94,7 +94,7 @@ function _update_task_status($id, $status) {
 	global $mysqli;
 	$id = intval($id);
 	$status = QUEUE_STATUS::from($status);
-	$r = $mysqli->query("update action_queue set status='".$status->value."' where id=$id");
+	$r = $mysqli->query("update action_queue set status='".$status->value."', modified=CURRENT_TIMESTAMP() where id=$id");
 	return $r;
 }
 
@@ -132,7 +132,7 @@ function _update_forklift_now_printer($fl_id, $p_id) {
 	global $mysqli;
 	$fl_id = intval($fl_id);
 	$p_id = intval($p_id);
-	$q = $mysqli->query("update forklifts set now_printer=$p_id where id=$fl_id");
+	$q = $mysqli->query("update forklifts set now_printer=$p_id , modified=CURRENT_TIMESTAMP() where id=$fl_id");
 	return $q;
 }
 
