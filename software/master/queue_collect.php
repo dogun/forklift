@@ -26,7 +26,7 @@ while (true) {
 			}
 			$host = $fl['host'];
 			$port = $fl['port'];
-			$macro = 'MOVE_PRINTER'; //TODO 这里要写死吗？
+			$macro = 'B1'; //TODO 这里要写死吗？
 			$res = _remote_run_macro(0, M_TYPE::QUEUE->value, $task['printer_id'], $action, $host, $port, $macro);
 			if (!$res) { //TODO 失败
 			}

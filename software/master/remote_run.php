@@ -4,10 +4,10 @@ include('inc.php');
 
 $action = @$_GET['action'];
 $macro = @$_GET['macro'];
-$host = @$_SERVER['REMOTE_ADDR'];
+$r_host = @$_SERVER['REMOTE_ADDR'];
 $printer = @$_GET['printer'];
 
-_log('INFO', "$printer $action $macro @ $host", 0, 'HTTP');
+_log('INFO', "$printer $action $macro @ $r_host", 0, 'HTTP');
 
 if ($action == 'call_forklift') {
 	$r = _query_printer_by_name($printer);
@@ -24,7 +24,7 @@ if ($action == 'call_forklift') {
 	$host = $f_r['host'];
 	$port = $f_r['port'];
 
-	if (!$macro) { //没有指定宏，则异步收料
+	if (!$macro || $macro == 'NONE') { //没有指定宏，则异步收料
 		$str = _queue_collect_serialize($printer_id, $forklift_id);
 		_queue($printer_id, M_TYPE::PRINTER->value, QUEUE_ACTION::CALL_FORKLIFT_COLLECT->value, $str);
 		echo 'QUEUED';
