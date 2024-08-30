@@ -1,3 +1,4 @@
 *.stl
 pw.php
 *.gcode
+*.log
