@@ -136,6 +136,30 @@ function _update_forklift_now_printer($fl_id, $p_id) {
 	return $q;
 }
 
+function _update_forklift_now_printer_and_status($fl_id, $p_id, $status) {
+	global $mysqli;
+	$fl_id = intval($fl_id);
+	$p_id = intval($p_id);
+	$status = M_STATUS::from($status);
+	$q = $mysqli->query("update forklifts set now_printer=$p_id , modified=CURRENT_TIMESTAMP(), status='".$status->value."' where id=$fl_id");
+	return $q;
+}
+
+function _query_board_by_name($b_name) {
+	global $mysqli;
+	$fl = $mysqli->query("select * from borads where name='".$mysqli->real_escape_string($b_name)."'");
+	$r = $fl->fetch_assoc();
+	return $r;
+}
+
+function _query_board($b_id) {
+	global $mysqli;
+	$b_id = intval($b_id);
+	$fl = $mysqli->query("select * from forklifts where id=$b_id");
+	$r = $fl->fetch_assoc();
+	return $r;
+}
+
 function _queue_collect_serialize($print_id, $forklift_id) {
 	$arr = array();
 	$arr['printer_id'] = $print_id;
