@@ -65,7 +65,7 @@ if ($action == 'call_forklift') {
 		__log('update now printer error:'.var_dump($r));
 	}
 	echo $res;
-} elseif ($action == 'call_board') { //TODO
+} elseif ($action == 'call_board') {
 	$f_r = _query_forklift_by_name($printer);
 	if (!$f_r) {
 		die('FORKLIFT NOT FOUND:'.$printer);
@@ -76,6 +76,22 @@ if ($action == 'call_forklift') {
 	$p_r = _query_board($b_id);
 	if (!$p_r) {
 		die('BOARD NOT FOUND:'.$p_id);
+	}
+	$host = $p_r['host'];
+	$port = $p_r['port'];
+	$res = _remote_run_macro($f_id, M_TYPE::FORKLIFT->value, $p_id, $action, $host, $port, $macro);
+	echo $res;
+} elseif ($action == 'board_call_forklift') {
+	$f_r = _query_board_by_name($printer);
+	if (!$f_r) {
+		die('BOARD NOT FOUND:'.$printer);
+	}
+	$f_id = $f_r['id'];
+	$b_id = $f_r['forklift_id'];
+	
+	$p_r = _query_forklift($b_id);
+	if (!$p_r) {
+		die('FORKLIFT NOT FOUND:'.$p_id);
 	}
 	$host = $p_r['host'];
 	$port = $p_r['port'];

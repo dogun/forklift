@@ -155,7 +155,7 @@ function _query_board_by_name($b_name) {
 function _query_board($b_id) {
 	global $mysqli;
 	$b_id = intval($b_id);
-	$fl = $mysqli->query("select * from forklifts where id=$b_id");
+	$fl = $mysqli->query("select * from boards where id=$b_id");
 	$r = $fl->fetch_assoc();
 	return $r;
 }
