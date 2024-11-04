@@ -147,7 +147,7 @@ function _update_forklift_now_printer_and_status($fl_id, $p_id, $status) {
 
 function _query_board_by_name($b_name) {
 	global $mysqli;
-	$fl = $mysqli->query("select * from borads where name='".$mysqli->real_escape_string($b_name)."'");
+	$fl = $mysqli->query("select * from boards where name='".$mysqli->real_escape_string($b_name)."'");
 	$r = $fl->fetch_assoc();
 	return $r;
 }
@@ -200,3 +200,4 @@ function _remote_run($call_id, $call_type, $target_id, $action, $url) {
 #echo _queue(1, 'PRINTER', 'CALL_FORKLIFT_COLLECT', _queue_collect_serialize(3, 3));
 #var_dump(_query_ready_task_collect());
 #var_dump(_query_log());
+#var_dump(_query_board_by_name('b1'));
