@@ -41,14 +41,15 @@ while (true) {
 			continue;
 		}
 		$macro = $task['content'];
-		if ($action == QUEUE_ACTION::PRINTER_CALL_FORKLIFT) {
+		$res = 'NULL';
+		if ($action == QUEUE_ACTION::PRINTER_CALL_FORKLIFT->value) {
 			$host = $fl['host'];
 			$port = $fl['port'];
 			$res = _remote_run_macro($printer_id, M_TYPE::QUEUE->value, $forklift_id, $action, $host, $port, $macro);
 			if (!$res) {
 				__log('run macro error:'.var_dump($res));
 			}
-		}elseif ($action == QUEUE_ACTION::FORKLIFT_CALL_PRINTER) {
+		}elseif ($action == QUEUE_ACTION::FORKLIFT_CALL_PRINTER->value) {
 			$p_r = _query_printer($printer_id);
 			if (!$p_r) {
 				__log('printer not found:'.$printer_id);
@@ -60,9 +61,9 @@ while (true) {
 					__log('run macro error:'.var_dump($res));
 				}
 			}
-		}elseif ($action == QUEUE_ACTION::FORKLIFT_CALL_BOARD) {
+		}elseif ($action == QUEUE_ACTION::FORKLIFT_CALL_BOARD->value) {
 			$b_r = _query_board($board_id);
-			if (!$p_r) {
+			if (!$b_r) {
 				__log('board not found:'.$board_id);
 			}else {
 				$host = $b_r['host'];
@@ -72,7 +73,7 @@ while (true) {
 					__log('run macro error:'.var_dump($res));
 				}
 			}
-		}elseif ($action == QUEUE_ACTION::BOARD_CALL_FORKLIFT) {
+		}elseif ($action == QUEUE_ACTION::BOARD_CALL_FORKLIFT->value) {
 			$host = $fl['host'];
 			$port = $fl['port'];
 			$res = _remote_run_macro($board_id, M_TYPE::QUEUE->value, $forklift_id, $action, $host, $port, $macro);

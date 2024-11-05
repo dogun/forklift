@@ -77,9 +77,10 @@ function _query_ready_tasks() {
 	global $mysqli;
 	$ret = array();
 	$r = $mysqli->query("select * from action_queue where status='".QUEUE_STATUS::READY->value."' order by id asc limit 1");
-	while (($r = r->fetch_assoc()) != NULL) {
-		$ret[] = $r;
+	while (($row = $r->fetch_assoc()) != NULL) {
+		$ret[] = $row;
 	}
+	return $ret;
 }
 
 function _update_task_status($id, $status) {
@@ -159,6 +160,7 @@ function _remote_run_macro($call_id, $call_type, $target_id, $action, $host, $po
 
 function _remote_run($call_id, $call_type, $target_id, $action, $url) {
 	$res = file_get_contents($url);
+	__log($url);
 	_log(LOG_LEVEL::INFO->value, "RC $call_id $action $target_id $url $res", $call_id, $call_type);
 	return $res;
 }
