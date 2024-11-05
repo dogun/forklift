@@ -5,6 +5,7 @@ $mysqli = new mysqli('localhost', 'root', $pw, '3d_world');
 enum M_TYPE:string {
 	case PRINTER = 'PRINTER';
 	case FORKLIFT = 'FORKLIFT';
+	case BOARD = 'BOARD';
 	case QUEUE = 'QUEUE';
 	case ADMIN = 'ADMIN';
 	case HTTP = 'HTTP';
@@ -32,7 +33,10 @@ enum QUEUE_STATUS:string {
 }
 
 enum QUEUE_ACTION:string {
-	case CALL_FORKLIFT_COLLECT = 'CALL_FORKLIFT_COLLECT';
+	case PRINTER_CALL_FORKLIFT = 'PRINTER_CALL_FORKLIFT';
+	case FORKLIFT_CALL_BOARD = 'FORKLIFT_CALL_BOARD';
+	case FORKLIFT_CALL_PRINTER = 'FORKLIFT_CALL_PRINTER';
+	case BOARD_CALL_FORKLIFT = 'BOARD_CALL_FORKLIFT';
 }
 
 function __log($log) {
@@ -59,35 +63,23 @@ function _query_log() {
 	return $ret;
 }
 
-function _queue($m_id, $m_type, $action, $content) {
+function _queue($printer_id, $forklift_id, $board_id, $action, $content) {
 	global $mysqli;
-	$m_id = intval($m_id);
-	$m_type = M_TYPE::from($m_type);
+	$printer_id = intval($printer_id);
+	$forklift_id = intval($forklift_id);
+	$board_id = intval($board_id);
 	$action = QUEUE_ACTION::from($action);
-	$pr = $mysqli->query("insert into action_queue (m_id, m_type, action, content, created, status) values ($m_id, '".$m_type->value."', '".$action->value."', '".$mysqli->real_escape_string($content)."', CURRENT_TIMESTAMP(), '".QUEUE_STATUS::READY->value."')");
+	$pr = $mysqli->query("insert into action_queue (printer_id, forklift_id, board_id, action, content, created, status) values ($printer_id, $forklift_id, $board_id, '".$action->value."', '".$mysqli->real_escape_string($content)."', CURRENT_TIMESTAMP(), '".QUEUE_STATUS::READY->value."')");
 	return $pr;
 }
 
-function _query_ready_task() {
+function _query_ready_tasks() {
 	global $mysqli;
+	$ret = array();
 	$r = $mysqli->query("select * from action_queue where status='".QUEUE_STATUS::READY->value."' order by id asc limit 1");
-	return $r->fetch_assoc();
-}
-
-function _query_ready_task_collect() {
-	global $mysqli;
-	$r = $mysqli->query("select * from action_queue where action='".QUEUE_ACTION::CALL_FORKLIFT_COLLECT->value."' and status='".QUEUE_STATUS::READY->value."' order by id asc");
-	$arr = array();
-	while (($q = $r->fetch_assoc())) {
-		$content = _queue_collect_unserialize($q['content']);
-		$q['printer_id'] = $content['printer_id'];
-		$q['forklift_id'] = $content['forklift_id'];
-		$forklift_id = $content['forklift_id'];
-		if (!@$arr[$forklift_id]) { //不存在这个叉车，就加入处理，只加入最早的一个
-			$arr[$forklift_id] = $q;
-		}
+	while (($r = r->fetch_assoc()) != NULL) {
+		$ret[] = $r;
 	}
-	return $arr;
 }
 
 function _update_task_status($id, $status) {
@@ -158,17 +150,6 @@ function _query_board($b_id) {
 	$fl = $mysqli->query("select * from boards where id=$b_id");
 	$r = $fl->fetch_assoc();
 	return $r;
-}
-
-function _queue_collect_serialize($print_id, $forklift_id) {
-	$arr = array();
-	$arr['printer_id'] = $print_id;
-	$arr['forklift_id'] = $forklift_id;
-	return serialize($arr);
-}
-
-function _queue_collect_unserialize($str) {
-	return unserialize($str);
 }
 
 function _remote_run_macro($call_id, $call_type, $target_id, $action, $host, $port, $macro) {

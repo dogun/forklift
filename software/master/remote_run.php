@@ -9,6 +9,7 @@ $printer = @$_GET['printer'];
 
 _log('INFO', "$printer $action $macro @ $r_host", 0, 'HTTP');
 
+//2024.11.05 所有都异步处理
 if ($action == 'call_forklift') {
 	$r = _query_printer_by_name($printer);
 	if (!$r) {
@@ -20,18 +21,9 @@ if ($action == 'call_forklift') {
 	if (!$f_r) {
 		die('FORKLIFT NOT FOUND:'.$forklift_id);
 	}
-
-	$host = $f_r['host'];
-	$port = $f_r['port'];
-
-	if (!$macro || $macro == 'NONE') { //没有指定宏，则异步收料
-		$str = _queue_collect_serialize($printer_id, $forklift_id);
-		_queue($printer_id, M_TYPE::PRINTER->value, QUEUE_ACTION::CALL_FORKLIFT_COLLECT->value, $str);
-		echo 'QUEUED';
-	} else {
-		$res = _remote_run_macro($printer_id, M_TYPE::PRINTER->value, $forklift_id, $action, $host, $port, $macro);
-		echo $res;
-	}
+	$board_id = $f_r['board_id'];
+	_queue($printer_id, $forklift_id, $board_id, QUEUE_ACTION::PRINTER_CALL_FORKLIFT->value, $macro);
+	echo 'QUEUED';
 } elseif ($action == 'call_printer') {
 	$f_r = _query_forklift_by_name($printer);
 	if (!$f_r) {
@@ -39,15 +31,16 @@ if ($action == 'call_forklift') {
 	}
 	$f_id = $f_r['id'];
 	$p_id = $f_r['now_printer'];
+	$b_id = $f_r['board_id'];
 	
 	$p_r = _query_printer($p_id);
 	if (!$p_r) {
 		die('PRINTER NOT FOUND:'.$p_id);
 	}
-	$host = $p_r['host'];
-	$port = $p_r['port'];
-	$res = _remote_run_macro($f_id, M_TYPE::FORKLIFT->value, $p_id, $action, $host, $port, $macro);
-	echo $res;
+	$printer_id = $p_r['id'];
+	$forklift_id = $p_r['forklift_id'];
+	_queue($printer_id, $forklift_id, $b_id, QUEUE_ACTION::FORKLIFT_CALL_PRINTER->value, $macro);
+	echo 'QUEUED';
 } elseif ($action == 'forklift_ready') {
 	$f_r = _query_forklift_by_name($printer);
 	if (!$f_r) {
@@ -77,24 +70,26 @@ if ($action == 'call_forklift') {
 	if (!$p_r) {
 		die('BOARD NOT FOUND:'.$p_id);
 	}
-	$host = $p_r['host'];
-	$port = $p_r['port'];
-	$res = _remote_run_macro($f_id, M_TYPE::FORKLIFT->value, $p_id, $action, $host, $port, $macro);
-	echo $res;
+	$printer_id = $f_r['now_printer'];
+	$forklift_id = $f_r['id'];
+	$board_id = $b_id;
+	_queue($printer_id, $forklift_id, $board_id, QUEUE_ACTION::FORKLIFT_CALL_BOARD->value, $macro);
+	echo 'QUEUED';
 } elseif ($action == 'board_call_forklift') {
-	$f_r = _query_board_by_name($printer);
-	if (!$f_r) {
+	$b_r = _query_board_by_name($printer);
+	if (!$b_r) {
 		die('BOARD NOT FOUND:'.$printer);
 	}
-	$f_id = $f_r['id'];
-	$b_id = $f_r['forklift_id'];
+	$b_id = $b_r['id'];
+	$f_id = $b_r['forklift_id'];
 	
-	$p_r = _query_forklift($b_id);
-	if (!$p_r) {
-		die('FORKLIFT NOT FOUND:'.$p_id);
+	$f_r = _query_forklift($f_id);
+	if (!$f_r) {
+		die('FORKLIFT NOT FOUND:'.$f_id);
 	}
-	$host = $p_r['host'];
-	$port = $p_r['port'];
-	$res = _remote_run_macro($f_id, M_TYPE::FORKLIFT->value, $p_id, $action, $host, $port, $macro);
-	echo $res;
+	$printer_id = $f_r['now_printer'];
+	$forklift_id = $f_r['id'];
+	$board_id = $b_id;
+	_queue($printer_id, $forklift_id, $board_id, QUEUE_ACTION::BOARD_CALL_FORKLIFT->value, $macro);
+	echo 'QUEUED';
 }
