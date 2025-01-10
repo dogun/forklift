@@ -172,7 +172,7 @@ function _remote_run($call_id, $call_type, $target_id, $action, $url) {
 #var_dump($p);
 #$fl = _query_forklift(0);
 #var_dump($fl);
-#var_dump(_query_printer(1));
+#var_dump(_query_printer(8));
 #var_dump(_query_forklift_by_name('fl.1'));
 #var_dump(_queue_collect_unserialize(_queue_collect_serialize(1, 2)));
 #var_dump(_remote_run(1, 'PRINTER', 2, 'CALL_FORKLIFT', 'http://localhost/'));

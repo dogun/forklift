@@ -55,7 +55,7 @@ while (true) {
 				__log('printer not found:'.$printer_id);
 			}else {
 				$host = $p_r['host'];
-				$prot = $p_r['port'];
+				$port = $p_r['port'];
 				$res = _remote_run_macro($forklift_id, M_TYPE::QUEUE->value, $printer_id, $action, $host, $port, $macro);
 				if (!$res) {
 					__log('run macro error:'.var_dump($res));
@@ -67,7 +67,7 @@ while (true) {
 				__log('board not found:'.$board_id);
 			}else {
 				$host = $b_r['host'];
-				$prot = $b_r['port'];
+				$port = $b_r['port'];
 				$res = _remote_run_macro($forklift_id, M_TYPE::QUEUE->value, $board_id, $action, $host, $port, $macro);
 				if (!$res) {
 					__log('run macro error:'.var_dump($res));
