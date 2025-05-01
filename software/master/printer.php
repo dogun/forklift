@@ -105,13 +105,18 @@ $ps = _query_all_printer();
             <th>操作</th>
         </tr>
 <?php
+$fl = array();
 foreach ($ps as $p) {
+	$f_id = $p['forklift_id'];
+	if (!@$fl[$f_id]) {
+		$fl[$f_id] = _query_forklift($f_id);
+	}
 ?>
         <tr>
             <td class="printer-name"><?php echo $p['name']; ?></td>
             <td class="printer-status status-printing"><?php echo $p['status']; ?></td>
             <td><?php echo $p['host'].':'.$p['port']; ?></td>
-			<td><?php echo $p['forklift_id']; ?></td>
+			<td><?php echo $fl[$f_id]['name']; ?></td>
             <td><?php echo $p['created']; ?></td>
             <td><?php echo $p['modified']; ?></</td>
             <td>
