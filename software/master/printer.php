@@ -99,7 +99,7 @@ $ps = _query_all_printer();
             <th>名称</th>
             <th>地址</th>
 			<th>取板车</th>
-            <th>创建时间</th>
+            <th>年龄</th>
 			<th>状态</th>
             <th>当前打印文件</th>
             <th>操作</th>
@@ -117,7 +117,7 @@ foreach ($ps as $p) {
             <td class="printer-name"><?php echo $p['name']; ?></td>
             <td><?php echo $p['host'].':'.$p['port']; ?></td>
 			<td><?php echo $fl[$f_id]['name']; ?></td>
-            <td><?php echo calculateAge($p['created']); ?></td>
+            <td><?php $a = calculateAge($p['created']); echo $a['years'].'年'.$a['months'].'月'; ?></td>
 			<td class="printer-status status-printing"><?php echo $status['result']['status']['print_stats']['state']; ?></td>
             <td><?php echo $status['result']['status']['print_stats']['filename']; ?> 
 				( <?php echo intval($status['result']['status']['print_stats']['print_duration']); ?>秒 / <?php echo intval($status['result']['status']['print_stats']['total_duration']); ?>秒 )</</td>
