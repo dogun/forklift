@@ -217,6 +217,26 @@ function _query_printer_objects($host, $port, $objects) {
 	return array();
 }
 
+function calculateAge($birthDate) {
+    // 解析给定的日期
+    $birthDateTime = new DateTime($birthDate);
+    // 获取当前日期
+    $currentDateTime = new DateTime();
+
+    // 计算年份差值
+    $years = $currentDateTime->format('Y') - $birthDateTime->format('Y');
+    // 计算月份差值
+    $months = $currentDateTime->format('m') - $birthDateTime->format('m');
+
+    // 如果当前月份小于出生月份，年份减 1，月份加上 12
+    if ($months < 0) {
+        $years--;
+        $months += 12;
+    }
+
+    return array('years' => $years, 'months' => $months);
+}
+
 #test
 #_log('DEBUG', 'test " log', 1, 'PRINTER');
 #echo _queue(1, 'PRINTER', 'CALL_FORKLIFT', 'content " content');
