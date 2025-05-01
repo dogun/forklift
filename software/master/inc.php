@@ -175,6 +175,52 @@ function _remote_run($call_id, $call_type, $target_id, $action, $url) {
 	return $res;
 }
 
+function _query_printer_objects($host, $port, $objects) {
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_URL, "http://$host:$port/printer/objects/query");
+	curl_setopt($ch, CURLOPT_POST, true);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	$data = array(
+		'jsonrpc' => '2.0',
+		'method' => 'printer.objects.query',
+		'params' => array(
+			'objects' => $objects
+		),
+		'id' => 1000
+	);
+
+	$jsonData = json_encode($data);
+	curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonData);
+	curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+		'Content-Type: application/json',
+		'Content-Length: ' . strlen($jsonData)
+	));
+	$response = curl_exec($ch);
+	
+	if (curl_errno($ch)) {
+		echo 'cURL 错误: ' . curl_error($ch);
+	} else {
+		// 获取响应状态码
+		$statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+		// 根据状态码处理响应
+		if ($statusCode == 200) {
+			// 解析 JSON 响应
+			$responseData = json_decode($response, true);
+
+			// 检查是否成功解析 JSON
+			if (json_last_error() === JSON_ERROR_NONE) {
+				// 处理解析后的数据
+				print_r($responseData);
+			} else {
+				echo 'JSON 解析错误: ' . json_last_error_msg();
+			}
+		} else {
+			echo "请求失败，状态码: $statusCode";
+		}
+	}
+}
+
 #test
 #_log('DEBUG', 'test " log', 1, 'PRINTER');
 #echo _queue(1, 'PRINTER', 'CALL_FORKLIFT', 'content " content');
