@@ -101,7 +101,7 @@ $ps = _query_all_printer();
             <th>地址</th>
 			<th>取板车</th>
             <th>创建时间</th>
-            <th>修改时间</th>
+            <th>当前打印文件</th>
             <th>操作</th>
         </tr>
 <?php
@@ -111,15 +111,15 @@ foreach ($ps as $p) {
 	if (!@$fl[$f_id]) {
 		$fl[$f_id] = _query_forklift($f_id);
 	}
-	_query_printer_objects($p['host'], $p['port'], array('print_stats'=>null));
+	$status = _query_printer_objects($p['host'], $p['port'], array('print_stats'=>null));
 ?>
         <tr>
             <td class="printer-name"><?php echo $p['name']; ?></td>
-            <td class="printer-status status-printing"><?php echo $p['status']; ?></td>
+            <td class="printer-status status-printing"><?php echo $status['result']['status']['print_stats']['state']; ?></td>
             <td><?php echo $p['host'].':'.$p['port']; ?></td>
 			<td><?php echo $fl[$f_id]['name']; ?></td>
             <td><?php echo $p['created']; ?></td>
-            <td><?php echo $p['modified']; ?></</td>
+            <td><?php echo $status['result']['status']['print_stats']['filename']; ?></</td>
             <td>
                 <button disabled>暂停</button>
                 <button disabled>取消</button>

@@ -206,7 +206,7 @@ function _query_printer_objects($host, $port, $objects) {
 			// 检查是否成功解析 JSON
 			if (json_last_error() === JSON_ERROR_NONE) {
 				// 处理解析后的数据
-				print_r($responseData);
+				return $responseData;
 			} else {
 				echo 'JSON 解析错误: ' . json_last_error_msg();
 			}
@@ -214,6 +214,7 @@ function _query_printer_objects($host, $port, $objects) {
 			echo "请求失败，状态码: $statusCode";
 		}
 	}
+	return array();
 }
 
 #test
