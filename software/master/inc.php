@@ -91,6 +91,16 @@ function _update_task_status($id, $status) {
 	return $r;
 }
 
+function _query_all_printer() {
+	global $mysqli;
+	$pr = $mysqli->query("select * from printers order by name asc");
+	$ret = array();
+	while (($row = $pr->fetch_assoc()) != NULL) {
+		$ret[] = $row;
+	}
+	return $ret;
+}
+
 function _query_printer($printer_id) {
 	global $mysqli;
 	$printer_id = intval($printer_id);
