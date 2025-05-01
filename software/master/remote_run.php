@@ -51,7 +51,7 @@ if ($action == 'call_forklift') {
 	
 	$p_r = _query_printer($p_id);
 	if (!$p_r) {
-		die('PRINTER NOT FOUND:'.$p_id);
+		echo 'PRINTER NOT FOUND:'.$p_id;
 	}
 	$r = _update_forklift_now_printer_and_status($f_id, 0, M_STATUS::READY->value);
 	if (!$r) {
