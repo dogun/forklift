@@ -117,7 +117,7 @@ foreach ($ps as $p) {
             <td class="printer-name"><?php echo $p['name']; ?></td>
             <td><?php echo $p['host'].':'.$p['port']; ?></td>
 			<td><?php echo $fl[$f_id]['name']; ?></td>
-            <td><?php $a = calculateAge($p['created']); echo $a['years'].'年'.$a['months'].'月'; ?></td>
+            <td><?php $a = calculateAge($p['created']); echo $a['years'].'岁'.$a['months'].'个月'; ?></td>
 			<td class="printer-status status-printing"><?php echo $status['result']['status']['print_stats']['state']; ?></td>
             <td><?php echo $status['result']['status']['print_stats']['filename']; ?> 
 				( <?php echo intval($status['result']['status']['print_stats']['print_duration']); ?>秒 / <?php echo intval($status['result']['status']['print_stats']['total_duration']); ?>秒 )</</td>
