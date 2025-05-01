@@ -119,7 +119,8 @@ foreach ($ps as $p) {
             <td><?php echo $p['host'].':'.$p['port']; ?></td>
 			<td><?php echo $fl[$f_id]['name']; ?></td>
             <td><?php echo $p['created']; ?></td>
-            <td><?php echo $status['result']['status']['print_stats']['filename']; ?></</td>
+            <td><?php echo $status['result']['status']['print_stats']['filename']; ?> 
+				( <?php echo $status['result']['status']['print_stats']['print_duration']; ?> / <?php echo $status['result']['status']['print_stats']['total_duration']; ?> )</</td>
             <td>
                 <button disabled>暂停</button>
                 <button disabled>取消</button>
