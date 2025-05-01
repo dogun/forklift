@@ -111,7 +111,7 @@ foreach ($ps as $p) {
 	if (!@$fl[$f_id]) {
 		$fl[$f_id] = _query_forklift($f_id);
 	}
-	_query_printer_objects($p['host'], $p['port'], array('print_stats'));
+	_query_printer_objects($p['host'], $p['port'], array('print_stats'=>null));
 ?>
         <tr>
             <td class="printer-name"><?php echo $p['name']; ?></td>

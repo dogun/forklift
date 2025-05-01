@@ -181,12 +181,7 @@ function _query_printer_objects($host, $port, $objects) {
 	curl_setopt($ch, CURLOPT_POST, true);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 	$data = array(
-		'jsonrpc' => '2.0',
-		'method' => 'printer.objects.query',
-		'params' => array(
-			'objects' => $objects
-		),
-		'id' => 1000
+		'objects' => $objects
 	);
 
 	$jsonData = json_encode($data);
