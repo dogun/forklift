@@ -51,28 +51,33 @@ $ps = _query_all_printer();
         }
 
         .status-printing {
-            background-color: #dff0d8;
-            color: #3c763d;
+            background-color: #00AA00;
+            color: #FF22FF;
+        }
+
+        .status-complete {
+            background-color: #00AAAA;
+            color: #AA0000;
         }
 
         .status-paused {
-            background-color: #fcf8e3;
-            color: #8a6d3b;
+            background-color: #0000AA;
+            color: #AAAA22;
         }
 
         .status-standby {
-            background-color: #d9edf7;
-            color: #31708f;
+            background-color: #AAAA00;
+            color: #2222AA;
         }
 
         .status-error {
-            background-color: #f2dede;
-            color: #a94442;
+            background-color: #AA0000;
+            color: #22AAAA;
         }
 		
         .status-cancelled {
-            background-color: #02dede;
-            color: #a94442;
+            background-color: #AAAAAA;
+            color: #222222;
         }
 
         .pagination {
