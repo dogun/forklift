@@ -98,6 +98,8 @@ $ps = _query_all_printer();
         <tr>
             <th>名称</th>
             <th>地址</th>
+			<th>喉管类型</th>
+			<th>材料类型</th>
 			<th>取板车</th>
             <th>年龄</th>
 			<th>状态</th>
@@ -116,6 +118,8 @@ foreach ($ps as $p) {
         <tr>
             <td class="printer-name"><?php echo $p['name']; ?></td>
             <td><?php echo $p['host'].':'.$p['port']; ?></td>
+			<td><?php echo $p['throat_type']; ?></td>
+			<td><?php echo $p['material_type']; ?></td>
 			<td><?php echo $fl[$f_id]['name']; ?></td>
             <td><?php $a = calculateAge($p['created']); echo $a['years'].'岁'.$a['months'].'个月'; ?></td>
 			<td class="printer-status status-printing"><?php echo $status['result']['status']['print_stats']['state']; ?></td>
