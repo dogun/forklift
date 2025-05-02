@@ -60,13 +60,18 @@ $ps = _query_all_printer();
             color: #8a6d3b;
         }
 
-        .status-idle {
+        .status-standby {
             background-color: #d9edf7;
             color: #31708f;
         }
 
         .status-error {
             background-color: #f2dede;
+            color: #a94442;
+        }
+		
+        .status-cancelled {
+            background-color: #02dede;
             color: #a94442;
         }
 
@@ -122,7 +127,9 @@ foreach ($ps as $p) {
 			<td><?php echo $p['material_type']; ?></td>
 			<td><?php echo $fl[$f_id]['name']; ?></td>
             <td><?php $a = calculateAge($p['created']); echo $a['years'].'岁'.$a['months'].'个月'; ?></td>
-			<td class="printer-status status-printing"><?php echo $status['result']['status']['print_stats']['state']; ?></td>
+			<td class="printer-status status-<?php echo $status['result']['status']['print_stats']['state'];?>">
+				<?php echo $status['result']['status']['print_stats']['state']; ?>
+			</td>
             <td><?php echo $status['result']['status']['print_stats']['filename']; ?> 
 				( <?php echo intval($status['result']['status']['print_stats']['print_duration']); ?>秒 / <?php echo intval($status['result']['status']['print_stats']['total_duration']); ?>秒 )</</td>
             <td>
