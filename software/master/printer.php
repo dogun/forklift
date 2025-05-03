@@ -127,7 +127,7 @@ foreach ($ps as $p) {
 ?>
         <tr>
             <td class="printer-name"><?php echo $p['name']; ?></td>
-            <td><?php echo $p['host'].':'.$p['port']; ?></td>
+            <td><a href="http://<?php echo $p['host'];?>" target="_blank"><?php echo $p['host'].':'.$p['port']; ?></a></td>
 			<td><?php echo $p['throat_type']; ?></td>
 			<td><?php echo $p['material_type']; ?></td>
 			<td><?php echo $fl[$f_id]['name']; ?></td>
