@@ -116,6 +116,16 @@ function _query_printer_by_name($printer_name) {
 	return $r;
 }
 
+function _query_all_forklift() {
+	global $mysqli;
+	$pr = $mysqli->query("select * from forklifts order by name asc");
+	$ret = array();
+	while (($row = $pr->fetch_assoc()) != NULL) {
+		$ret[] = $row;
+	}
+	return $ret;
+}
+
 function _query_forklift($fl_id) {
 	global $mysqli;
 	$fl_id = intval($fl_id);

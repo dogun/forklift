@@ -1,6 +1,7 @@
 <?php
 include('inc.php');
 $ps = _query_all_printer();
+$fs = _query_all_forklift();
 ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -104,13 +105,12 @@ $ps = _query_all_printer();
     <h1>打印机监控面板</h1>
     <!-- 打印机列表表格 -->
     <table id="printerTable">
-        <!-- 第一页打印机数据 -->
         <tr>
             <th>名称</th>
             <th>地址</th>
 			<th>喉管类型</th>
 			<th>材料类型</th>
-			<th>取板车</th>
+			<th>板车</th>
             <th>年龄</th>
 			<th>状态</th>
             <th>当前打印文件</th>
@@ -136,7 +136,47 @@ foreach ($ps as $p) {
 				<?php echo $status['result']['status']['print_stats']['state']; ?>
 			</td>
             <td><?php echo $status['result']['status']['print_stats']['filename']; ?> 
-				( <?php echo intval($status['result']['status']['print_stats']['print_duration']); ?>秒 / <?php echo intval($status['result']['status']['print_stats']['total_duration']); ?>秒 )</</td>
+				( <?php echo intval($status['result']['status']['print_stats']['print_duration']); ?>秒 / <?php echo intval($status['result']['status']['print_stats']['total_duration']); ?>秒 )
+			</td>
+            <td>
+                <button disabled>暂停</button>
+                <button disabled>取消</button>
+            </td>
+        </tr>
+<?php 
+}
+?>
+    </table>
+
+    <h1>板车监控面板</h1>
+    <!-- 板车列表表格 -->
+    <table id="printerTable">
+        <tr>
+            <th>名称</th>
+            <th>地址</th>
+			<th>取板车</th>
+            <th>年龄</th>
+			<th>状态</th>
+            <th>当前打印机</th>
+            <th>操作</th>
+        </tr>
+<?php
+$pl = array();
+foreach ($fs as $p) {
+	$p_id = $p['now_printer'];
+	if (!@$pl[$p_id]) {
+		$pl[$p_id] = _query_printer($p_id);
+	}
+?>
+        <tr>
+            <td class="printer-name"><?php echo $p['name']; ?></td>
+            <td><a href="http://<?php echo $p['host'];?>" target="_blank"><?php echo $p['host'].':'.$p['port']; ?></a></td>
+			<td><?php echo $p['board_id']; ?></td>
+            <td><?php $a = calculateAge($p['created']); echo $a['years'].'岁'.$a['months'].'个月'; ?></td>
+			<td class="printer-status status-<?php echo $p['status']; ?>">
+				<?php echo $p['status']; ?>
+			</td>
+            <td><?php echo $pl[$p_id]['name']; ?></td>
             <td>
                 <button disabled>暂停</button>
                 <button disabled>取消</button>
@@ -147,5 +187,4 @@ foreach ($ps as $p) {
 ?>
     </table>
 </body>
-
 </html>
