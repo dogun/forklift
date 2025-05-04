@@ -1,3 +1,3 @@
 <?php
-exec('tail -f collect.log -n 100');
+exec('tail collect.log -n 100');
 ?>
