@@ -7,7 +7,7 @@ $message = '';
 if ($username && $password) {
 	$user = _query_user_by_name($username);
 	$ps = md5($seed.$password.$seed);
-	echo $seed;
+	echo $seed.$password.$seed;
 	echo ' ';
 	echo $ps;
 	echo ' ';
