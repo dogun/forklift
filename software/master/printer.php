@@ -75,8 +75,18 @@ $fs = _query_all_forklift();
             background-color: #AAAA00;
             color: #2222AA;
         }
+		
+        .status-ready {
+            background-color: #AAAA00;
+            color: #2222AA;
+        }
 
         .status-error {
+            background-color: #AA0000;
+            color: #22AAAA;
+        }
+		
+        .status-shutdown {
             background-color: #AA0000;
             color: #22AAAA;
         }

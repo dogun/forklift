@@ -188,7 +188,6 @@ function _remote_run($call_id, $call_type, $target_id, $action, $url) {
 function _query_printer_info($host, $port) {
 	$url = "http://$host:$port/printer/info";
 	$res = file_get_contents($url);
-	__log($url);
 	$data = json_decode($res, true);
 	return $data;
 }
