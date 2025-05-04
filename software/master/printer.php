@@ -1,7 +1,8 @@
 <?php
 include('inc.php');
-$ps = _query_all_printer();
-$fs = _query_all_forklift();
+$ps = _query_all_printers();
+$fs = _query_all_forklifts();
+$bs = _query_all_boards();
 ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -174,7 +175,7 @@ foreach ($ps as $p) {
         <tr>
             <th>名称</th>
             <th>地址</th>
-			<th>板</th>
+			<th>板仓</th>
             <th>年龄</th>
 			<th>机态</th>
 			<th>工态</th>
@@ -212,5 +213,40 @@ foreach ($fs as $p) {
 }
 ?>
     </table>
+	
+	    <h1>板仓监控面板</h1>
+	    <!-- 板仓列表表格 -->
+	    <table id="printerTable">
+	        <tr>
+	            <th>名称</th>
+	            <th>地址</th>
+				<th>板车</th>
+	            <th>年龄</th>
+				<th>机态</th>
+	            <th>操作</th>
+	        </tr>
+	<?php
+	$pl = array();
+	foreach ($bs as $p) {
+		$pstatus = _query_printer_info($p['host'], $p['port']);
+		$fl = _query_forklift($p['forklift_id']);
+	?>
+	        <tr>
+	            <td class="printer-name"><?php echo $p['name']; ?></td>
+	            <td><a href="http://<?php echo $p['host'];?>" target="_blank"><?php echo $p['host'].':'.$p['port']; ?></a></td>
+				<td><?php echo $fl['name']; ?></td>
+	            <td><?php $a = calculateAge($p['created']); echo $a['years'].'岁'.$a['months'].'个月'; ?></td>
+				<td class="printer-status status-<?php echo $pstatus['result']['state']; ?>">
+					<?php echo $pstatus['result']['state']; ?>
+				</td>
+	            <td>
+	                <button disabled>暂停</button>
+	                <button disabled>取消</button>
+	            </td>
+	        </tr>
+	<?php 
+	}
+	?>
+	    </table>
 </body>
 </html>

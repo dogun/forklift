@@ -101,7 +101,7 @@ function _query_all_printer() {
 	return $ret;
 }
 
-function _query_printer($printer_id) {
+function _query_printers($printer_id) {
 	global $mysqli;
 	$printer_id = intval($printer_id);
 	$pr = $mysqli->query("select * from printers where id=$printer_id");
@@ -126,7 +126,7 @@ function _query_all_forklift() {
 	return $ret;
 }
 
-function _query_forklift($fl_id) {
+function _query_forklifts($fl_id) {
 	global $mysqli;
 	$fl_id = intval($fl_id);
 	$fl = $mysqli->query("select * from forklifts where id=$fl_id");
@@ -158,6 +158,16 @@ function _update_forklift_now_printer_and_status($fl_id, $p_id, $status) {
 	return $q;
 }
 
+function _query_all_boards() {
+	global $mysqli;
+	$pr = $mysqli->query("select * from boards order by name asc");
+	$ret = array();
+	while (($row = $pr->fetch_assoc()) != NULL) {
+		$ret[] = $row;
+	}
+	return $ret;
+}
+
 function _query_board_by_name($b_name) {
 	global $mysqli;
 	$fl = $mysqli->query("select * from boards where name='".$mysqli->real_escape_string($b_name)."'");
@@ -181,7 +191,7 @@ function _remote_run_macro($call_id, $call_type, $target_id, $action, $host, $po
 function _remote_run($call_id, $call_type, $target_id, $action, $url) {
 	$res = file_get_contents($url);
 	__log($url);
-	_log(LOG_LEVEL::INFO->value, "RC $call_id $action $target_id $url $res", $call_id, $call_type);
+	_log(LOG_LEVEL::INFO->value, "RC $call_id $action $target_id $url $res", $call_id, $call_id_type);
 	return $res;
 }
 
@@ -272,4 +282,4 @@ function calculateAge($birthDate) {
 #echo _queue(1, 'PRINTER', 'CALL_FORKLIFT_COLLECT', _queue_collect_serialize(3, 3));
 #var_dump(_query_ready_task_collect());
 #var_dump(_query_log());
-#var_dump(_query_board_by_name('b1'));
+#var_dump(_query_forklift_by_name('b1'));
