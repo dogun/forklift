@@ -9,6 +9,7 @@
 <?php
 $res = '';
 exec('tail collect.log -n 100', $res);
+$res = array_reverse($res);
 foreach ($res as $l) {
 	echo $l.'<br />';
 }
