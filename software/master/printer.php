@@ -144,7 +144,7 @@ foreach ($ps as $p) {
 	$status = _query_printer_objects($p['host'], $p['port'], array('print_stats'=>null));
 ?>
         <tr>
-            <td class="printer-name"><?php echo $p['name']; ?></td>
+            <td class="printer-name"><?php echo $p['name']; ?> (<?php echo $p['id'];?>)</td>
             <td><a href="http://<?php echo $p['host'];?>" target="_blank"><?php echo $p['host'].':'.$p['port']; ?></a></td>
 			<td><?php echo $p['throat_type']; ?></td>
 			<td><?php echo $p['material_type']; ?></td>
@@ -193,7 +193,7 @@ foreach ($fs as $p) {
 	$board = _query_board($p['board_id']);
 ?>
         <tr>
-            <td class="printer-name"><?php echo $p['name']; ?></td>
+            <td class="printer-name"><?php echo $p['name']; ?> (<?php echo $p['id'];?>)</td>
             <td><a href="http://<?php echo $p['host'];?>" target="_blank"><?php echo $p['host'].':'.$p['port']; ?></a></td>
 			<td><?php echo $board['name']; ?></td>
             <td><?php $a = calculateAge($p['created']); echo $a['years'].'岁'.$a['months'].'个月'; ?></td>
@@ -232,7 +232,7 @@ foreach ($fs as $p) {
 		$fl = _query_forklift($p['forklift_id']);
 	?>
 	        <tr>
-	            <td class="printer-name"><?php echo $p['name']; ?></td>
+	            <td class="printer-name"><?php echo $p['name']; ?> (<?php echo $p['id'];?>)</td>
 	            <td><a href="http://<?php echo $p['host'];?>" target="_blank"><?php echo $p['host'].':'.$p['port']; ?></a></td>
 				<td><?php echo $fl['name']; ?></td>
 	            <td><?php $a = calculateAge($p['created']); echo $a['years'].'岁'.$a['months'].'个月'; ?></td>
