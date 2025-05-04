@@ -120,6 +120,7 @@ $bs = _query_all_boards();
 <body>
 	<p>
 		<a href="log.php" target="_blank">执行日志</a>
+		<a href="queue_log.php" target="_blank">队列日志</a>
 		<a href="task.php" target="_blank">任务管理</a>
 	</p>
     <h1>打印机监控面板</h1>
