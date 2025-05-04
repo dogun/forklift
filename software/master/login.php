@@ -35,7 +35,7 @@ if ($username && $password) {
 
 <body>
     <h2>用户登录</h2>
-	<p>$message</p>
+	<p><?php echo $message;?></p>
     <form action="login.php" method="post">
         <label for="username">用户名：</label>
         <input type="text" id="username" name="username" required><br><br>
