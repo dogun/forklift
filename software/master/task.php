@@ -26,7 +26,7 @@
 
 <body>
     <h2>文件上传</h2>
-    <form action="upload.php" method="post" enctype="multipart/form-data">
+    <form action="task.php" method="post" enctype="multipart/form-data">
         <input type="file" name="files[]" multiple>
         <input type="submit" value="上传">
     </form>
