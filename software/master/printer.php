@@ -176,7 +176,8 @@ foreach ($ps as $p) {
             <th>地址</th>
 			<th>取板车</th>
             <th>年龄</th>
-			<th>状态</th>
+			<th>机态</th>
+			<th>运态</th>
             <th>当前打印机</th>
             <th>操作</th>
         </tr>
@@ -187,12 +188,16 @@ foreach ($fs as $p) {
 	if (!@$pl[$p_id]) {
 		$pl[$p_id] = _query_printer($p_id);
 	}
+	$pstatus = _query_printer_info($p['host'], $p['port']);
 ?>
         <tr>
             <td class="printer-name"><?php echo $p['name']; ?></td>
             <td><a href="http://<?php echo $p['host'];?>" target="_blank"><?php echo $p['host'].':'.$p['port']; ?></a></td>
 			<td><?php echo $p['board_id']; ?></td>
             <td><?php $a = calculateAge($p['created']); echo $a['years'].'岁'.$a['months'].'个月'; ?></td>
+			<td class="printer-status status-<?php echo $pstatus['result']['state']; ?>">
+				<?php echo $pstatus['result']['state']; ?>
+			</td>
 			<td class="printer-status status-<?php echo $p['status']; ?>">
 				<?php echo $p['status']; ?>
 			</td>
