@@ -117,7 +117,8 @@ $fs = _query_all_forklift();
 			<th>材料类型</th>
 			<th>板车</th>
             <th>年龄</th>
-			<th>状态</th>
+			<th>机态</th>
+			<th>工态</th>
             <th>当前打印文件</th>
             <th>操作</th>
         </tr>
@@ -128,6 +129,7 @@ foreach ($ps as $p) {
 	if (!@$fl[$f_id]) {
 		$fl[$f_id] = _query_forklift($f_id);
 	}
+	$pstatus = _query_printer_info($p['host'], $p['port']);
 	$status = _query_printer_objects($p['host'], $p['port'], array('print_stats'=>null));
 ?>
         <tr>
@@ -137,6 +139,9 @@ foreach ($ps as $p) {
 			<td><?php echo $p['material_type']; ?></td>
 			<td><?php echo $fl[$f_id]['name']; ?></td>
             <td><?php $a = calculateAge($p['created']); echo $a['years'].'岁'.$a['months'].'个月'; ?></td>
+			<td class="printer-status status-<?php echo $pstatus['result']['state']; ?>">
+				<?php echo $pstatus['result']['state']; ?>
+			</td>
 			<td class="printer-status status-<?php echo $status['result']['status']['print_stats']['state'];?>">
 				<?php echo $status['result']['status']['print_stats']['state']; ?>
 			</td>
