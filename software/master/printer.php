@@ -1,5 +1,6 @@
 <?php
 include('inc.php');
+include('auth.php');
 $ps = _query_all_printers();
 $fs = _query_all_forklifts();
 $bs = _query_all_boards();

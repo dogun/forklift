@@ -2,6 +2,17 @@
 include('pw.php');
 $mysqli = new mysqli('localhost', 'root', $pw, '3d_world');
 
+enum USER_STATUS:string {
+	case NORMAL = 'NORMAL';
+	case DELETED = 'DELETED';
+	case DISABLED = 'DISABLED';
+}
+
+enum USER_TYPE:string {
+	case ADMIN = 'ADMIN';
+	case USER = 'USER';
+}
+
 enum M_TYPE:string {
 	case PRINTER = 'PRINTER';
 	case FORKLIFT = 'FORKLIFT';
@@ -262,6 +273,14 @@ function calculateAge($birthDate) {
     }
 
     return array('years' => $years, 'months' => $months);
+}
+
+function _query_user($user_id) {
+	global $mysqli;
+	$user_id = intval($user_id);
+	$u = $mysqli->query("select * from users where id=$user_id");
+	$r = $u->fetch_assoc();
+	return $r;
 }
 
 #test

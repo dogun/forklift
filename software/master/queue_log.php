@@ -1,3 +1,7 @@
+<?php
+include('inc.php');
+include('auth.php');
+?>
 <html lang="zh-CN">
 
 <head>

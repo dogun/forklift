@@ -1,5 +1,6 @@
 <?php
 include('inc.php');
+include('auth.php');
 $logs = _query_log();
 ?>
 <html>
