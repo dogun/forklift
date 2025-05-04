@@ -124,13 +124,13 @@ $bs = _query_all_boards();
         <tr>
             <th>名称</th>
             <th>地址</th>
-			<th>喉管类型</th>
-			<th>材料类型</th>
+			<th>喉管</th>
+			<th>材料</th>
 			<th>板车</th>
             <th>年龄</th>
 			<th>机态</th>
 			<th>工态</th>
-            <th>当前打印文件</th>
+            <th>当前文件</th>
             <th>操作</th>
         </tr>
 <?php
@@ -160,8 +160,7 @@ foreach ($ps as $p) {
 				( <?php echo intval($status['result']['status']['print_stats']['print_duration']); ?>秒 / <?php echo intval($status['result']['status']['print_stats']['total_duration']); ?>秒 )
 			</td>
             <td>
-                <button disabled>暂停</button>
-                <button disabled>取消</button>
+
             </td>
         </tr>
 <?php 
@@ -205,8 +204,7 @@ foreach ($fs as $p) {
 			</td>
             <td><?php echo $pl[$p_id]['name']; ?></td>
             <td>
-                <button disabled>暂停</button>
-                <button disabled>取消</button>
+
             </td>
         </tr>
 <?php 
@@ -240,8 +238,7 @@ foreach ($fs as $p) {
 					<?php echo $pstatus['result']['state']; ?>
 				</td>
 	            <td>
-	                <button disabled>暂停</button>
-	                <button disabled>取消</button>
+
 	            </td>
 	        </tr>
 	<?php 
