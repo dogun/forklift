@@ -118,8 +118,8 @@ $bs = _query_all_boards();
 </head>
 
 <body>
+	<p><a href="log.php" target="_blank">执行日志</a></p>
     <h1>打印机监控面板</h1>
-	<a href="log.php" target="_blank">执行日志</a>
     <!-- 打印机列表表格 -->
     <table id="printerTable">
         <tr>
