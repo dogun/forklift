@@ -16,8 +16,8 @@ if ($username && $password) {
 		//login success
 		if ($user['status'] == USER_STATUS::NORMAL->value) {
 			session_start();
-			$_SESSION['user_id'] = $user['user_id'];
-			$_SESSION['user_name'] = $user['user_name'];
+			$_SESSION['user_id'] = $user['id'];
+			$_SESSION['user_name'] = $user['name'];
 			if (!$url) $url = 'printer.php';
 			header('location: '.$url);
 		} else {

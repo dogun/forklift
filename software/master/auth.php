@@ -1,7 +1,5 @@
 <?php
 session_start();
-print_r($_SESSION);
-exit;
 if (!isset($_SESSION['user_id']) || !isset($_SESSION['user_name'])) {
     header("Location: login.php?url=".urlencode($_SERVER['REQUEST_URI']));
     exit();
