@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['user_id']) || !isset($_SESSION['user_name'])) {
-    header("Location: login.php");
+    header("Location: login.php?url=".urlencode($__FILE__));
     exit();
 }
 $user_id = $_SEESION['user_id'];

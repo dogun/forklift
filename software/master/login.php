@@ -6,7 +6,13 @@ $url = @$_POST['url'];
 $message = '';
 if ($username && $password) {
 	$user = _query_user_by_name($username);
-	if ($user && $user['password'] == md5($seed.$password.$seed)) {
+	$ps = md5($seed.$password.$seed);
+	echo $seed;
+	echo ' ';
+	echo $ps;
+	echo ' ';
+	echo $user['password'];
+	if ($user && $user['password'] == $ps) {
 		//login success
 		if ($user['status'] == USER_STATUS::NORMAL->value) {
 			session_start();
