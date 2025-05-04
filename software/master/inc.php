@@ -91,7 +91,7 @@ function _update_task_status($id, $status) {
 	return $r;
 }
 
-function _query_all_printer() {
+function _query_all_printers() {
 	global $mysqli;
 	$pr = $mysqli->query("select * from printers order by name asc");
 	$ret = array();
@@ -101,7 +101,7 @@ function _query_all_printer() {
 	return $ret;
 }
 
-function _query_printers($printer_id) {
+function _query_printer($printer_id) {
 	global $mysqli;
 	$printer_id = intval($printer_id);
 	$pr = $mysqli->query("select * from printers where id=$printer_id");
@@ -116,7 +116,7 @@ function _query_printer_by_name($printer_name) {
 	return $r;
 }
 
-function _query_all_forklift() {
+function _query_all_forklifts() {
 	global $mysqli;
 	$pr = $mysqli->query("select * from forklifts order by name asc");
 	$ret = array();
@@ -126,7 +126,7 @@ function _query_all_forklift() {
 	return $ret;
 }
 
-function _query_forklifts($fl_id) {
+function _query_forklift($fl_id) {
 	global $mysqli;
 	$fl_id = intval($fl_id);
 	$fl = $mysqli->query("select * from forklifts where id=$fl_id");
