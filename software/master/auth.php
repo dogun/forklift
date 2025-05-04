@@ -5,9 +5,10 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['user_name'])) {
     exit();
 }
 $user_id = $_SEESION['user_id'];
-$user = _query_user($user_id);
 print_r($user_id);
 print_r($_SESSION);
+$user = _query_user($user_id);
+
 echo 'aaa';
 print_r($user);
 echo 'bbbb';
