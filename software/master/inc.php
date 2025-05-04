@@ -283,6 +283,13 @@ function _query_user($user_id) {
 	return $r;
 }
 
+function _query_user_by_name($uname) {
+	global $mysqli;
+	$fl = $mysqli->query("select * from users where name='".$mysqli->real_escape_string($uname)."'");
+	$r = $fl->fetch_assoc();
+	return $r;
+}
+
 #test
 #_log('DEBUG', 'test " log', 1, 'PRINTER');
 #echo _queue(1, 'PRINTER', 'CALL_FORKLIFT', 'content " content');
