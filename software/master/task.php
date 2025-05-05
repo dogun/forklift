@@ -3,7 +3,7 @@ include('inc.php');
 include('auth.php');
 
 $file = @$_FILES['file'];
-if ($file) {
+if ($file && $file['size'] > 0) {
 	$file_name = $file['name'];
 	$size = $file['size'];
 	$path = $file['tmp_name'];
@@ -78,5 +78,4 @@ foreach ($fs as $f) {
         </tbody>
     </table>
 </body>
-
 </html>
