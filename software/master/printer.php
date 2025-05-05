@@ -121,12 +121,12 @@ $bs = _query_all_boards();
 <body>
 	<p>
 		欢迎你：<?php echo $_SESSION['user_name'];?>
+		<a href="logout.php">退出</a>
 	</p>
 	<p>
 		<a href="log.php" target="_blank">执行日志</a>
 		<a href="queue_log.php" target="_blank">队列日志</a>
 		<a href="task.php" target="_blank">任务管理</a>
-		<a href="logout.php">退出</a>
 	</p>
     <h1>打印机监控面板</h1>
     <!-- 打印机列表表格 -->
