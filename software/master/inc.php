@@ -2,7 +2,8 @@
 include('pw.php');
 $mysqli = new mysqli('localhost', 'root', $pw, '3d_world');
 
-$FILE_PATH = __DIR__.'/files/';
+#$FILE_PATH = __DIR__.'/files/';
+$FILE_PATH = '/root/files';
 
 enum USER_STATUS:string {
 	case NORMAL = 'NORMAL';
