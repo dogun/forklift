@@ -317,7 +317,7 @@ function _query_user_by_name($uname) {
 function _insert_task_file($name, $size, $user_id, $material, $color) {
 	global $mysqli;
 	$size = intval($size);
-	$name = mysqli->real_escape_string($name);
+	$name = $mysqli->real_escape_string($name);
 	$material = MATERIAL::from($material);
 	$color = COLOR::from($color);
 	$user_id = intval($user_id);
