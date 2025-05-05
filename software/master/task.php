@@ -12,6 +12,8 @@ if ($file) {
 	move_uploaded_file($path, $fname);
 	echo $fname;
 }
+
+$fs = _query_all_task_files();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -58,7 +60,19 @@ if ($file) {
             </tr>
         </thead>
         <tbody>
-            <!-- 文件列表将通过服务器端渲染 -->
+<?php
+foreach ($fs as $f) {
+?>
+            <tr>
+                <td><?php echo $f['name']; ?></td>
+                <td><?php echo $f['size'];?></td>
+                <td>打印份数</td>
+                <td>分配打印机</td>
+                <td>操作</td>
+            </tr>
+<?php
+}
+?>
         </tbody>
     </table>
 </body>

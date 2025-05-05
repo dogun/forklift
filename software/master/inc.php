@@ -327,6 +327,16 @@ function _insert_task_file($name, $size, $user_id, $material, $color) {
 	return $mysqli->insert_id;
 }
 
+function _query_all_task_files() {
+	global $mysqli;
+	$pr = $mysqli->query("select * from task_files order by id asc");
+	$ret = array();
+	while (($row = $pr->fetch_assoc()) != NULL) {
+		$ret[] = $row;
+	}
+	return $ret;
+}
+
 #test
 #_log('DEBUG', 'test " log', 1, 'PRINTER');
 #echo _queue(1, 'PRINTER', 'CALL_FORKLIFT', 'content " content');
