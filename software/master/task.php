@@ -1,6 +1,11 @@
 <?php
 include('inc.php');
 include('auth.php');
+
+$file = @$_FILES['file'];
+if ($file) {
+	print_r($file);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,7 +36,7 @@ include('auth.php');
 <body>
     <h2>文件上传</h2>
     <form action="task.php" method="post" enctype="multipart/form-data">
-        <input type="file" name="files[]" multiple>
+        <input type="file" name="file">
         <input type="submit" value="上传">
     </form>
 

@@ -2,6 +2,8 @@
 include('pw.php');
 $mysqli = new mysqli('localhost', 'root', $pw, '3d_world');
 
+$file_path = __DIR__.'/files/';
+
 enum USER_STATUS:string {
 	case NORMAL = 'NORMAL';
 	case DELETED = 'DELETED';
