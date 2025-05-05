@@ -8,7 +8,9 @@ if ($file) {
 	$size = $file['size'];
 	$path = $file['tmp_name'];
 	$id = _insert_task_file($file_name, $size, $user_id, 'ABS', 'BLACK');
-	echo $id;
+	$fname = $FILE_PATH.$id;
+	move_uploaded_file($path, $fname);
+	echo $fname;
 }
 ?>
 <!DOCTYPE html>
