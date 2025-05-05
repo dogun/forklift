@@ -54,7 +54,8 @@ $fs = _query_all_task_files();
             <tr>
                 <th>文件名</th>
                 <th>大小（字节）</th>
-                <th>打印份数</th>
+                <th>材料</th>
+				<th>颜色</th>
                 <th>分配打印机</th>
                 <th>操作</th>
             </tr>
@@ -64,9 +65,10 @@ $fs = _query_all_task_files();
 foreach ($fs as $f) {
 ?>
             <tr>
-                <td><?php echo $f['name']; ?></td>
+                <td><?php echo htmlspecialchars($f['name']); ?>(<?php echo $f['id'];?>)</td>
                 <td><?php echo $f['size'];?></td>
-                <td>打印份数</td>
+                <td><?php echo $f['material'];?></td>
+				<td><?php echo $f['color'];?></td>
                 <td>分配打印机</td>
                 <td>操作</td>
             </tr>
