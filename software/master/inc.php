@@ -15,6 +15,28 @@ enum USER_TYPE:string {
 	case USER = 'USER';
 }
 
+enum MATERIAL:string {
+	case ABS = 'ABS';
+	case PETH = 'PETG';
+	case PLA = 'PLA';
+	case TPU = 'TPU';
+}
+
+enum COLOR:string {
+	case BLACK = 'BLACK';
+	case WHITE = 'WHITE';
+	case RED = 'RED';
+	case ORANGE = 'ORANGE';
+	case BLUE = 'BLUE';
+}
+
+enum TASK_FILES_STATUS:string {
+	case INIT = 'INIT';
+	case WAIT_PRINT = 'WAIT_PRINT';
+	case PRINTING = 'PRINTING';
+	case FINISHED = 'FINISHED';
+}
+
 enum M_TYPE:string {
 	case PRINTER = 'PRINTER';
 	case FORKLIFT = 'FORKLIFT';
@@ -290,6 +312,18 @@ function _query_user_by_name($uname) {
 	$fl = $mysqli->query("select * from users where name='".$mysqli->real_escape_string($uname)."'");
 	$r = $fl->fetch_assoc();
 	return $r;
+}
+
+function _insert_task_file($name, $size, $user_id, $material, $color) {
+	global $mysqli;
+	$size = intval($size);
+	$name = mysqli->real_escape_string($name);
+	$material = MATERIAL::from($material);
+	$color = COLOR::from($color);
+	$user_id = intval($user_id);
+	$status = TASK_FILES_STATUS::INIT->value;
+	$pr = $mysqli->query("insert into task_files (name, user_id, size, status, material, color) values ('$name', $user_id, $size, '$status', '$material', '$color')");
+	return $mysqli->insert_id;
 }
 
 #test

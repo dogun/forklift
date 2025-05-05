@@ -4,7 +4,11 @@ include('auth.php');
 
 $file = @$_FILES['file'];
 if ($file) {
-	print_r($file);
+	$file_name = $file['name'];
+	$size = $file['size'];
+	$path = $file['tmp_name'];
+	$id = _insert_task_file($file_name, $size, $user_id, 'ABS', 'BLACK');
+	echo $id;
 }
 ?>
 <!DOCTYPE html>
