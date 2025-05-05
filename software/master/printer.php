@@ -120,6 +120,9 @@ $bs = _query_all_boards();
 
 <body>
 	<p>
+		欢迎你：<?php echo $_SESSION['user_name'];?>
+	</p>
+	<p>
 		<a href="log.php" target="_blank">执行日志</a>
 		<a href="queue_log.php" target="_blank">队列日志</a>
 		<a href="task.php" target="_blank">任务管理</a>
