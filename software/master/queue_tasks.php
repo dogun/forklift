@@ -68,7 +68,13 @@ foreach ($at as $t) {
                 <td><?php echo $t['created']; ?></td>
                 <td><?php echo $t['modified']; ?></td>
                 <td><?php echo $t['status']; ?></td>
-                <td><a href="queue_tasks.php?action=cancle&id=<?php echo $t['id'];?>">取消</a></td>
+                <td>
+					<?php if ($t['status'] == QUEUE_STATUS::READY->value) { ?>
+					<a href="queue_tasks.php?action=cancle&id=<?php echo $t['id'];?>">取消</a>
+					<?php } else { ?>
+					&nbsp;
+					<?php } ?>
+				</td>
 <?php } ?>
             </tr>
         </tbody>
