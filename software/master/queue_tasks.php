@@ -71,6 +71,7 @@ $at = _query_all_tasks();
     <table id="infoTable">
         <thead>
             <tr>
+				<th>序号</th>
                 <th>打印机</th>
                 <th>板车</th>
                 <th>板仓</th>
@@ -90,6 +91,7 @@ foreach ($at as $t) {
 	$b = _query_board($t['board_id']);
 ?>
             <tr>
+				<td><?php echo $t['id']; ?></td>
                 <td><?php echo $p['name']; ?></td>
                 <td><?php echo $f['name']; ?></td>
                 <td><?php echo $b['name']; ?></td>
