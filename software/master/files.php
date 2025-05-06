@@ -43,8 +43,23 @@ $fs = _query_all_print_files();
 
 <body>
     <h2>文件上传</h2>
-    <form action="task.php" method="post" enctype="multipart/form-data">
+    <form action="files.php" method="post" enctype="multipart/form-data">
         <input type="file" name="file">
+        <!-- 材料下拉选框 -->
+        <label for="material">选择材料:</label>
+        <select name="material" id="material">
+		<?php foreach (MATERIAL::cases() as $m) {
+            <option value="<?php echo $m->value; ?>"><?php echo $m->value; ?></option>
+        <?php } ?>
+        </select>
+
+        <!-- 颜色下拉选框 -->
+        <label for="color">选择颜色:</label>
+        <select name="color" id="color">
+		<?php foreach (COLOR::cases() as $c) {
+            <option value="<?php echo $c->value; ?>"><?php echo $c->value; ?></option>
+        <?php } ?>
+        </select>
         <input type="submit" value="上传">
     </form>
 

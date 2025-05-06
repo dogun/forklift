@@ -29,6 +29,7 @@ enum COLOR:string {
 	case RED = 'RED';
 	case ORANGE = 'ORANGE';
 	case BLUE = 'BLUE';
+	case NOT_SET = 'NOT_SET';
 }
 
 enum PRINT_FILES_STATUS:string {
