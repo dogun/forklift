@@ -1,6 +1,13 @@
 <?php
 include('inc.php');
 include('auth.php');
+
+$action = @$_GET['action'];
+if ($action == 'cancle') {
+	$id = $_GET['id'];
+	_update_task_status($id, QUEUE_STATUS::CANCLE->value);
+}
+
 $at = _query_all_tasks();
 ?>
 <!DOCTYPE html>
@@ -61,7 +68,7 @@ foreach ($at as $t) {
                 <td><?php echo $t['created']; ?></td>
                 <td><?php echo $t['modified']; ?></td>
                 <td><?php echo $t['status']; ?></td>
-                <td>&nbsp;</td>
+                <td><a href="queue_task.php?action=cancle&id=<?php echo $t['id'];?>">取消</a></td>
 <?php } ?>
             </tr>
         </tbody>
