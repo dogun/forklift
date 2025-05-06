@@ -31,7 +31,7 @@ enum COLOR:string {
 	case BLUE = 'BLUE';
 }
 
-enum TASK_FILES_STATUS:string {
+enum PRINT_FILES_STATUS:string {
 	case INIT = 'INIT';
 	case WAIT_PRINT = 'WAIT_PRINT';
 	case PRINTING = 'PRINTING';
@@ -113,6 +113,16 @@ function _query_ready_tasks() {
 	global $mysqli;
 	$ret = array();
 	$r = $mysqli->query("select * from action_queue where status='".QUEUE_STATUS::READY->value."' order by id asc limit 1");
+	while (($row = $r->fetch_assoc()) != NULL) {
+		$ret[] = $row;
+	}
+	return $ret;
+}
+
+function _query_all_tasks() {
+	global $mysqli;
+	$ret = array();
+	$r = $mysqli->query("select * from action_queue order by id desc limit 100");
 	while (($row = $r->fetch_assoc()) != NULL) {
 		$ret[] = $row;
 	}
@@ -315,7 +325,7 @@ function _query_user_by_name($uname) {
 	return $r;
 }
 
-function _insert_task_file($name, $size, $user_id, $material, $color) {
+function _insert_print_file($name, $size, $user_id, $material, $color) {
 	global $mysqli;
 	$size = intval($size);
 	$name = $mysqli->real_escape_string($name);
@@ -327,9 +337,9 @@ function _insert_task_file($name, $size, $user_id, $material, $color) {
 	return $mysqli->insert_id;
 }
 
-function _query_all_task_files() {
+function _query_all_print_files() {
 	global $mysqli;
-	$pr = $mysqli->query("select * from task_files order by id asc");
+	$pr = $mysqli->query("select * from print_files order by id asc");
 	$ret = array();
 	while (($row = $pr->fetch_assoc()) != NULL) {
 		$ret[] = $row;
