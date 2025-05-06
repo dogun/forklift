@@ -48,7 +48,7 @@ $fs = _query_all_print_files();
         <!-- 材料下拉选框 -->
         <label for="material">选择材料:</label>
         <select name="material" id="material">
-		<?php foreach (MATERIAL::cases() as $m) {
+		<?php foreach (MATERIAL::cases() as $m) { ?>
             <option value="<?php echo $m->value; ?>"><?php echo $m->value; ?></option>
         <?php } ?>
         </select>
