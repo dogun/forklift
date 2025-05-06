@@ -13,7 +13,7 @@ if ($file && $file['size'] > 0) {
 	echo $fname;
 }
 
-$fs = _query_all_task_files();
+$fs = _query_all_print_files();
 ?>
 <!DOCTYPE html>
 <html lang="en">
