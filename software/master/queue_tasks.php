@@ -33,6 +33,41 @@ $at = _query_all_tasks();
         th {
             background-color: #f2f2f2;
         }
+		
+        .printer-status {
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+		
+        .status-RUNNING {
+            background-color: #00AA00;
+            color: #FF22FF;
+        }
+
+        .status-FINISHED {
+            background-color: #00AAAA;
+            color: #AA0000;
+        }
+
+        .status-paused {
+            background-color: #0000AA;
+            color: #AAAA22;
+        }
+		
+        .status-READY {
+            background-color: #AAAA00;
+            color: #2222AA;
+        }
+
+        .status-ERROR {
+            background-color: #AA0000;
+            color: #22AAAA;
+        }
+		
+        .status-CANCLE {
+            background-color: #AAAAAA;
+            color: #222222;
+        }
     </style>
 </head>
 
@@ -67,7 +102,7 @@ foreach ($at as $t) {
                 <td><?php echo $t['content']; ?></td>
                 <td><?php echo $t['created']; ?></td>
                 <td><?php echo $t['modified']; ?></td>
-                <td><?php echo $t['status']; ?></td>
+                <td class="printer-status status-<?php echo $t['status']; ?>"><?php echo $t['status']; ?></td>
                 <td>
 					<?php if ($t['status'] == QUEUE_STATUS::READY->value) { ?>
 					<a href="queue_tasks.php?action=cancle&id=<?php echo $t['id'];?>">取消</a>
