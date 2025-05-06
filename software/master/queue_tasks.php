@@ -68,7 +68,7 @@ foreach ($at as $t) {
                 <td><?php echo $t['created']; ?></td>
                 <td><?php echo $t['modified']; ?></td>
                 <td><?php echo $t['status']; ?></td>
-                <td><a href="queue_task.php?action=cancle&id=<?php echo $t['id'];?>">取消</a></td>
+                <td><a href="queue_tasks.php?action=cancle&id=<?php echo $t['id'];?>">取消</a></td>
 <?php } ?>
             </tr>
         </tbody>
