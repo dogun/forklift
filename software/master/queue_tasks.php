@@ -5,7 +5,7 @@ include('auth.php');
 $action = @$_GET['action'];
 if ($action == 'cancle') {
 	$id = $_GET['id'];
-	_update_task_status($id, QUEUE_STATUS::CANCLE->value);
+	_update_task_status($id, QUEUE_STATUS::CANCLED->value);
 }
 
 $at = _query_all_tasks();
@@ -49,11 +49,6 @@ $at = _query_all_tasks();
             color: #AA0000;
         }
 
-        .status-paused {
-            background-color: #0000AA;
-            color: #AAAA22;
-        }
-		
         .status-READY {
             background-color: #AAAA00;
             color: #2222AA;
@@ -64,7 +59,7 @@ $at = _query_all_tasks();
             color: #22AAAA;
         }
 		
-        .status-CANCLE {
+        .status-CANCLED {
             background-color: #AAAAAA;
             color: #222222;
         }

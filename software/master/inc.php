@@ -66,7 +66,7 @@ enum QUEUE_STATUS:string {
 	case RUNNING = 'RUNNING';
 	case FINISHED = 'FINISHED';
 	case ERROR = 'ERROR';
-	case CANCLE = 'CANCLE';
+	case CANCLED = 'CANCLED';
 }
 
 enum QUEUE_ACTION:string {
