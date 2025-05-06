@@ -56,7 +56,7 @@ $fs = _query_all_print_files();
         <!-- 颜色下拉选框 -->
         <label for="color">选择颜色:</label>
         <select name="color" id="color">
-		<?php foreach (COLOR::cases() as $c) {
+		<?php foreach (COLOR::cases() as $c) { ?>
             <option value="<?php echo $c->value; ?>"><?php echo $c->value; ?></option>
         <?php } ?>
         </select>
