@@ -17,7 +17,7 @@ if ($file && $file['size'] > 0) {
 $action = @$_GET['action'];
 if ($action == 'delete') {
 	$id = intval($_GET['id']);
-	_update_file_status($id, PRINT_FILE_STATUS::DELETED->value);
+	_update_file_status($id, PRINT_FILES_STATUS::DELETED->value);
 }
 
 $fs = _query_all_print_files();
