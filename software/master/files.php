@@ -88,7 +88,7 @@ $fs = _query_all_print_files();
         <tbody>
 <?php
 foreach ($fs as $f) {
-	if ($f['status'] == PRINT_FILE_STATUS::DELETED->value) continue;
+	if ($f['status'] == PRINT_FILES_STATUS::DELETED->value) continue;
 ?>
             <tr>
                 <td><?php echo htmlspecialchars($f['name']); ?>(<?php echo $f['id'];?>)</td>

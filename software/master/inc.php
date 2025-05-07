@@ -343,7 +343,7 @@ function _insert_print_file($name, $size, $user_id, $material, $color) {
 function _update_file_status($id, $status) {
 	global $mysqli;
 	$id = intval($id);
-	$status = PRINT_FILE_STATUS::from($status)->value;
+	$status = PRINT_FILES_STATUS::from($status)->value;
 	$r = $mysqli->query("update print_files set modified=CURRENT_TIMESTAMP(), status='$status' where id=$id");
 	return $r;
 }
