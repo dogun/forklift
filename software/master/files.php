@@ -12,11 +12,11 @@ if ($file && $file['size'] > 0) {
 	$id = _insert_print_file($file_name, $size, $user_id, $material, $color);
 	$fname = $FILE_PATH.$id;
 	move_uploaded_file($path, $fname);
-	echo $fname;
 }
 
 $fs = _query_all_print_files();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 

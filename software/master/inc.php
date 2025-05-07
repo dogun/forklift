@@ -341,7 +341,7 @@ function _insert_print_file($name, $size, $user_id, $material, $color) {
 
 function _query_all_print_files() {
 	global $mysqli;
-	$pr = $mysqli->query("select * from print_files order by id asc");
+	$pr = $mysqli->query("select * from print_files order by id desc");
 	$ret = array();
 	while (($row = $pr->fetch_assoc()) != NULL) {
 		$ret[] = $row;
