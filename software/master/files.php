@@ -14,6 +14,12 @@ if ($file && $file['size'] > 0) {
 	move_uploaded_file($path, $fname);
 }
 
+$action = @$_GET['action'];
+if ($action == 'delete') {
+	$id = intval($_GET['id']);
+	_update_file_status($id, PRINT_FILE_STATUS::DELETED->value);
+}
+
 $fs = _query_all_print_files();
 ?>
 
@@ -74,6 +80,7 @@ $fs = _query_all_print_files();
                 <th>大小（字节）</th>
                 <th>材料</th>
 				<th>颜色</th>
+				<th>状态</th>
                 <th>分配打印机</th>
                 <th>操作</th>
             </tr>
@@ -81,6 +88,7 @@ $fs = _query_all_print_files();
         <tbody>
 <?php
 foreach ($fs as $f) {
+	if ($f['status'] == PRINT_FILE_STATUS::DELETED->value) continue;
 ?>
             <tr>
                 <td><?php echo htmlspecialchars($f['name']); ?>(<?php echo $f['id'];?>)</td>
@@ -88,8 +96,9 @@ foreach ($fs as $f) {
                 <td><?php echo $f['size'];?></td>
                 <td><?php echo $f['material'];?></td>
 				<td><?php echo $f['color'];?></td>
+				<td><?php echo $f['status'];?></td>
                 <td>分配打印机</td>
-                <td>操作</td>
+                <td><a href="files.php?action=delete&id=<?php echo $f['id']; ?>">删除</a></td>
             </tr>
 <?php
 }

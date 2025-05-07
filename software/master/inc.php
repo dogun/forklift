@@ -37,6 +37,7 @@ enum PRINT_FILES_STATUS:string {
 	case WAIT_PRINT = 'WAIT_PRINT';
 	case PRINTING = 'PRINTING';
 	case FINISHED = 'FINISHED';
+	case DELETED = 'DELETED';
 }
 
 enum M_TYPE:string {
@@ -337,6 +338,14 @@ function _insert_print_file($name, $size, $user_id, $material, $color) {
 	$status = PRINT_FILES_STATUS::INIT->value;
 	$pr = $mysqli->query("insert into print_files (name, user_id, size, status, material, color) values ('$name', $user_id, $size, '$status', '$material', '$color')");
 	return $mysqli->insert_id;
+}
+
+function _update_file_status($id, $status) {
+	global $mysqli;
+	$id = intval($id);
+	$status = PRINT_FILE_STATUS::from($status)->value;
+	$r = $mysqli->query("update print_files set modified=CURRENT_TIMESTAMP(), status='$status' where id=$id");
+	return $r;
 }
 
 function _query_all_print_files() {
