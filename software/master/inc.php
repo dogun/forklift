@@ -335,7 +335,7 @@ function _insert_print_file($name, $size, $user_id, $material, $color) {
 	$color = COLOR::from($color)->value;
 	$user_id = intval($user_id);
 	$status = PRINT_FILES_STATUS::INIT->value;
-	$pr = $mysqli->query("insert into task_files (name, user_id, size, status, material, color) values ('$name', $user_id, $size, '$status', '$material', '$color')");
+	$pr = $mysqli->query("insert into print_files (name, user_id, size, status, material, color) values ('$name', $user_id, $size, '$status', '$material', '$color')");
 	return $mysqli->insert_id;
 }
 
