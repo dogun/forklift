@@ -21,7 +21,7 @@ $fs = _query_all_print_files();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>任务管理</title>
+    <title>文件管理</title>
     <style>
         table {
             border-collapse: collapse;
