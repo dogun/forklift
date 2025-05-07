@@ -7,7 +7,9 @@ if ($file && $file['size'] > 0) {
 	$file_name = $file['name'];
 	$size = $file['size'];
 	$path = $file['tmp_name'];
-	$id = _insert_print_file($file_name, $size, $user_id, 'ABS', 'BLACK');
+	$material = MATERIAL::from($_POST['material'])->value;
+	$color = COLOR::from($_POST['color'])->value;
+	$id = _insert_print_file($file_name, $size, $user_id, '$material', '$color');
 	$fname = $FILE_PATH.$id;
 	move_uploaded_file($path, $fname);
 	echo $fname;
