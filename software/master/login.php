@@ -40,7 +40,7 @@ if ($username && $password) {
     <form action="login.php" method="post">
         <label for="username">用户名：</label>
         <input type="text" id="username" name="username" required><br><br>
-        <label for="password">密&nbsp;&nbsp;码：</label>
+        <label for="password">密　码：</label>
         <input type="password" id="password" name="password" required><br><br>
 		<input type="hidden" name="url" value="<?php echo htmlspecialchars($url); ?>" />
         <input type="submit" value="登录">
