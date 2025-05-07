@@ -70,6 +70,7 @@ $fs = _query_all_print_files();
         <thead>
             <tr>
                 <th>文件名</th>
+				<th>时间</th>
                 <th>大小（字节）</th>
                 <th>材料</th>
 				<th>颜色</th>
@@ -83,6 +84,7 @@ foreach ($fs as $f) {
 ?>
             <tr>
                 <td><?php echo htmlspecialchars($f['name']); ?>(<?php echo $f['id'];?>)</td>
+				<td><?php echo $f['created']; ?></td>
                 <td><?php echo $f['size'];?></td>
                 <td><?php echo $f['material'];?></td>
 				<td><?php echo $f['color'];?></td>
