@@ -4,6 +4,14 @@ include('auth.php');
 $ps = _query_all_printers();
 $fs = _query_all_forklifts();
 $bs = _query_all_boards();
+
+$action = @$_GET['action'];
+if ($action == 'cancle_fl') {
+	$id = @$_GET['id'];
+	$id = intval($id);
+	_update_forklift_now_printer_and_status($id, 0, M_STATUS::READY->value);
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -215,7 +223,9 @@ foreach ($fs as $p) {
 			</td>
             <td><?php echo $pl[$p_id]['name']; ?></td>
             <td>
-
+				<?php if ($p['status'] == M_STATUS::RUNNING->value) {?>
+					<a href="printer.php?action=cancle_fl&id=<?php echo $p['id']; ">取消</a>
+				<?php } ?>
             </td>
         </tr>
 <?php 
