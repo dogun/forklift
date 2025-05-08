@@ -240,7 +240,7 @@ function _remote_run_macro($call_id, $call_type, $target_id, $action, $host, $po
 function _remote_run($call_id, $call_type, $target_id, $action, $url) {
 	$res = file_get_contents($url);
 	__log($url);
-	_log(LOG_LEVEL::INFO->value, "RC $call_id $action $target_id $url $res", $call_id, $call_id_type);
+	_log(LOG_LEVEL::INFO->value, "RC $call_id $action $target_id $url $res", $call_id, $call_type);
 	return $res;
 }
 
