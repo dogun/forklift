@@ -3,11 +3,21 @@ include('inc.php');
 
 $time_cnt = 0;
 while (true) {
-	//_log(LOG_LEVEL::INFO->value, 'QUEUE RUN', 0, M_TYPE::QUEUE->value);
 	try {
 		$time_cnt ++;
 		if (($time_cnt % 10) == 0)
 			__log('QUEUE RUN');
+
+/*
+		// 先取小车状态, 如果小车是running状态,则根据小车的当前打印机取相应队列执行,如小车是ready状态,取最老的一条待执行任务
+		$fs = _query_all_forklifts();
+		foreach ($fs as $fl) {
+			if ($fl['status'] == M_STATUS::RUNNING->value) {
+				$printer_id = $fl['now_printer'];
+			}
+		}
+*/
+		
 		$tasks = _query_ready_tasks();
 		if (count($tasks) > 0) __log('TASK:'.count($tasks));
 		else if (($time_cnt % 10) == 0) __log('TASK:'.count($tasks));

@@ -115,7 +115,7 @@ function _queue($printer_id, $forklift_id, $board_id, $action, $content) {
 function _query_ready_tasks() {
 	global $mysqli;
 	$ret = array();
-	$r = $mysqli->query("select * from action_queue where status='".QUEUE_STATUS::READY->value."' order by id asc limit 1");
+	$r = $mysqli->query("select * from action_queue where status='".QUEUE_STATUS::READY->value."' order by id asc");
 	while (($row = $r->fetch_assoc()) != NULL) {
 		$ret[] = $row;
 	}
