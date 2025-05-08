@@ -1,9 +1,6 @@
 <?php
 include('inc.php');
 include('auth.php');
-$ps = _query_all_printers();
-$fs = _query_all_forklifts();
-$bs = _query_all_boards();
 
 $action = @$_GET['action'];
 if ($action == 'cancle_fl') {
@@ -11,6 +8,10 @@ if ($action == 'cancle_fl') {
 	$id = intval($id);
 	_update_forklift_now_printer_and_status($id, 0, M_STATUS::READY->value);
 }
+
+$ps = _query_all_printers();
+$fs = _query_all_forklifts();
+$bs = _query_all_boards();
 
 ?>
 <!DOCTYPE html>
