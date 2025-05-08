@@ -224,7 +224,7 @@ foreach ($fs as $p) {
             <td><?php echo $pl[$p_id]['name']; ?></td>
             <td>
 				<?php if ($p['status'] == M_STATUS::RUNNING->value) {?>
-					<a href="printer.php?action=cancle_fl&id=<?php echo $p['id']; ">取消</a>
+					<a href="printer.php?action=cancle_fl&id=<?php echo $p['id']; ?>">取消</a>
 				<?php } ?>
             </td>
         </tr>
