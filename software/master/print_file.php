@@ -2,7 +2,7 @@
 include('inc.php');
 include('auth.php');
 
-$id = @$_GET['id'];
+$id = @$_REQUEST['id'];
 $ps = _query_all_printers();
 $file = _query_file($id);
 ?>
@@ -52,6 +52,8 @@ $file = _query_file($id);
 
 <body>
     <h1>打印机列表</h1>
+	<form action="print_file.php" method="post">
+	<input type="hidden" name="id" value="<?php echo $id;?>" />
     <table>
         <thead>
             <tr>
@@ -90,6 +92,7 @@ foreach ($ps as $p) {
     </table>
     <button type="submit">确定</button>
     <button type="cancle">取消</button>
+	</form>
 </body>
 
 </html>
