@@ -69,7 +69,7 @@ foreach ($ps as $p) {
 ?>
             <tr>
                 <td><?php echo $p['name']; ?></td>
-                <td><?php echo $p['material']; ?></td>
+                <td><?php echo $p['material_type']; ?></td>
                 <td><?php echo $p['color']; ?></td>
                 <td><?php echo $p['status'].' / '.$status['result']['status']['print_stats']['state']; ?></td>
                 <td><input type="checkbox" name="printer" value="<?php echo $p['id']; ?>"></td>
