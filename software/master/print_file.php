@@ -74,6 +74,9 @@ foreach ($ps as $p) {
                 <td><?php echo $p['status'].' / '.$status['result']['status']['print_stats']['state']; ?></td>
                 <td><input type="checkbox" name="printer" value="<?php echo $p['id']; ?>"></td>
             </tr>
+<?php
+}
+?>
         </tbody>
     </table>
     <button type="submit">确定</button>
