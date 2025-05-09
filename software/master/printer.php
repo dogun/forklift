@@ -146,6 +146,7 @@ $bs = _query_all_boards();
             <th>地址</th>
 			<th>喉管</th>
 			<th>材料</th>
+			<ht>颜色</th>
 			<th>板车</th>
             <th>年龄</th>
 			<th>机态</th>
@@ -168,6 +169,7 @@ foreach ($ps as $p) {
             <td><a href="http://<?php echo $p['host'];?>" target="_blank"><?php echo $p['host'].':'.$p['port']; ?></a></td>
 			<td><?php echo $p['throat_type']; ?></td>
 			<td><?php echo $p['material_type']; ?></td>
+			<td><?php echo $p['color']; ?></td>
 			<td><?php echo $fl[$f_id]['name']; ?></td>
             <td><?php $a = calculateAge($p['created']); echo $a['years'].'岁'.$a['months'].'个月'; ?></td>
 			<td class="printer-status status-<?php echo $pstatus['result']['state']; ?>">

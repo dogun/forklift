@@ -29,6 +29,10 @@ enum COLOR:string {
 	case RED = 'RED';
 	case ORANGE = 'ORANGE';
 	case BLUE = 'BLUE';
+	case YELLOW = 'YELLOW';
+	case GREEN = 'GREEN';
+	case GREY = 'GREY';
+	case RAINBOW = 'RAINBOW';
 	case NOT_SET = 'NOT_SET';
 }
 
