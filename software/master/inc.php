@@ -362,6 +362,14 @@ function _query_all_print_files() {
 	return $ret;
 }
 
+function _query_file($id) {
+	global $mysqli;
+	$id = intval($id);
+	$pr = $mysqli->query("select * from print_files where id=$id");
+	$row = $pr->fetch_assoc();
+	return $row;
+}
+
 #test
 #_log('DEBUG', 'test " log', 1, 'PRINTER');
 #echo _queue(1, 'PRINTER', 'CALL_FORKLIFT', 'content " content');

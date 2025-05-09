@@ -2,7 +2,9 @@
 include('inc.php');
 include('auth.php');
 
+$id = @$_GET['id'];
 $ps = _query_all_printers();
+$file = _query_file($id);
 ?>
 
 <!DOCTYPE html>
@@ -61,6 +63,13 @@ $ps = _query_all_printers();
             </tr>
         </thead>
         <tbody>
+            <tr>
+                <td><?php echo $file['name']; ?></td>
+                <td><?php echo $file['material']; ?></td>
+                <td><?php echo $file['color']; ?></td>
+                <td><?php echo $file['status']; ?></td>
+                <td>&nbsp;</td>
+            </tr>
 <?php
 $fl = array();
 foreach ($ps as $p) {
