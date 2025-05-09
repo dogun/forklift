@@ -81,7 +81,6 @@ $fs = _query_all_print_files();
                 <th>材料</th>
 				<th>颜色</th>
 				<th>状态</th>
-                <th>分配打印机</th>
                 <th>操作</th>
             </tr>
         </thead>
@@ -97,8 +96,10 @@ foreach ($fs as $f) {
                 <td><?php echo $f['material'];?></td>
 				<td><?php echo $f['color'];?></td>
 				<td><?php echo $f['status'];?></td>
-                <td>分配打印机</td>
-                <td><a href="files.php?action=delete&id=<?php echo $f['id']; ?>">删除</a></td>
+                <td>
+					<a href="files.php?action=delete&id=<?php echo $f['id']; ?>">删除</a>
+					<a href="print_file.php?id=<?php echo $f['id'];?>">分配打印机</a>
+				</td>
             </tr>
 <?php
 }
