@@ -91,7 +91,7 @@ foreach ($ps as $p) {
         </tbody>
     </table>
     <button type="submit">确定</button>
-    <button type="cancle">取消</button>
+    <a href="files.php">取消</a>
 	</form>
 </body>
 
