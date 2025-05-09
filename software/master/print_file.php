@@ -63,7 +63,7 @@ $file = _query_file($id);
             </tr>
         </thead>
         <tbody>
-            <tr>
+            <tr style="color: #DD2222">
                 <td><?php echo $file['name']; ?></td>
                 <td><?php echo $file['material']; ?></td>
                 <td><?php echo $file['color']; ?></td>
