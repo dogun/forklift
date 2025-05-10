@@ -375,7 +375,7 @@ function _insert_print_files_queue($file_id, $printer_id, $status) {
 	$file_id = intval($file_id);
 	$printer_id = intval($printer_id);
 	$status = PRINT_FILES_STATUS::from($status)->value;
-	$mysqli->query("insert into print_files_queue (file_id, printer_id, status) values ($file_id, $printer_id, $status)");
+	$mysqli->query("insert into print_files_queue (file_id, printer_id, status) values ($file_id, $printer_id, '$status')");
 	return $mysqli->insert_id;
 }
 
