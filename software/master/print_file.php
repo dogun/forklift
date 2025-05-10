@@ -8,14 +8,19 @@ $file = _query_file($id);
 $queues = _query_print_files_queue_by_file_id($id);
 $qps = array();
 foreach ($queues as $q) {
-	$qps[$q['printer_id']] = 1;
+	if ($q['status'] == PRINT_FILES_STATUS::INIT->value)
+		$qps[$q['printer_id']] = 1;
 }
 
 $pids = @$_POST['printer'];
 if (is_array($pids)) {
 	foreach ($pids as $pid) {
 		$pid = intval($pid);
-		_insert_print_files_queue($id, $pid, PRINT_FILES_STATUS::INIT->value);
+		if (@$qps[$pid]) {
+			//
+		}else {
+			_insert_print_files_queue($id, $pid, PRINT_FILES_STATUS::INIT->value);
+		}
 	}
 }
 ?>
