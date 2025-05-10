@@ -383,8 +383,11 @@ function _query_print_files_queue_by_file_id($file_id) {
 	global $mysqli;
 	$file_id = intval($file_id);
 	$pr = $mysqli->query("select * from print_files_queue where file_id=$file_id");
-	$row = $pr->fetch_assoc();
-	return $row;
+	$ret = array();
+	while (($row = $pr->fetch_assoc()) != NULL) {
+		$ret[] = $row;
+	}
+	return $ret;
 }
 
 #test
