@@ -5,6 +5,19 @@ include('auth.php');
 $id = @$_REQUEST['id'];
 $ps = _query_all_printers();
 $file = _query_file($id);
+$queues = _query_print_files_queue_by_file_id($id);
+$qps = array();
+foreach ($queues as $q) {
+	$qps[$q['printer_id']] = 1;
+}
+
+$pids = @$_POST['printer'];
+if (is_array($pids)) {
+	foreach ($pids as $pid) {
+		$pid = intval($pid);
+		_insert_print_files_queue($id, $pid, PRINT_FILES_STATUS::INIT->value);
+	}
+}
 ?>
 
 <!DOCTYPE html>
@@ -83,7 +96,7 @@ foreach ($ps as $p) {
                 <td><?php echo $p['material_type']; ?></td>
                 <td><?php echo $p['color']; ?></td>
                 <td><?php echo $p['status'].' / '.$status['result']['status']['print_stats']['state']; ?></td>
-                <td><input type="checkbox" name="printer" value="<?php echo $p['id']; ?>"></td>
+                <td><input type="checkbox" name="printer[]" <?php if (@$qps[$p['id']]) echo 'checked'; ?> value="<?php echo $p['id']; ?>"></td>
             </tr>
 <?php
 }

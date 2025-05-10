@@ -370,6 +370,23 @@ function _query_file($id) {
 	return $row;
 }
 
+function _insert_print_files_queue($file_id, $printer_id, $status) {
+	global $mysqli;
+	$file_id = intval($file_id);
+	$printer_id = intval($printer_id);
+	$status = PRINT_FILES_STATUS::from($status)->value;
+	$mysqli->query("insert into print_files_queue (file_id, printer_id, status) values ($file_id, $printer_id, $status)");
+	return $mysqli->insert_id;
+}
+
+function _query_print_files_queue_by_file_id($file_id) {
+	global $mysqli;
+	$file_id = intval($file_id);
+	$pr = $mysqli->query("select * from print_files_queue where file_id=$file_id");
+	$row = $pr->fetch_assoc();
+	return $row;
+}
+
 #test
 #_log('DEBUG', 'test " log', 1, 'PRINTER');
 #echo _queue(1, 'PRINTER', 'CALL_FORKLIFT', 'content " content');
