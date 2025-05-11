@@ -394,7 +394,8 @@ function _update_print_files_queue_status($f_id, $status) {
 	global $mysqli;
 	$f_id = intval($f_id);
 	$status = PRINT_FILES_STATUS::from($status)->value;
-	$mysqli->query("update print_files_queue set status='$status', modified=CURRENT_TIMESTAMP() where id=$fid");
+	$sql = "update print_files_queue set status='$status', modified=CURRENT_TIMESTAMP() where id=$fid";
+	$mysqli->query($sql);
 }
 
 #test
