@@ -85,8 +85,7 @@ if (is_array($pids)) {
         </thead>
         <tbody>
 <?php
-foreach ($qps as $p) {
-	print_r($p);
+foreach ($queues as $p) {
 ?>
             <tr>
                 <td><?php echo $ps_i[$p['printer_id']]; ?></td>
