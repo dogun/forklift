@@ -88,7 +88,7 @@ if (is_array($pids)) {
 foreach ($queues as $p) {
 ?>
             <tr>
-                <td><?php echo $ps_i[$p['printer_id']]; ?></td>
+                <td><?php echo $ps_i[$p['printer_id']]['name']; ?></td>
                 <td><?php echo $p['created']; ?></td>
                 <td><?php echo $p['status']; ?></td>
             </tr>
