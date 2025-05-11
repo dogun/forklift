@@ -382,7 +382,7 @@ function _insert_print_files_queue($file_id, $printer_id, $status) {
 function _query_print_files_queue_by_file_id($file_id) {
 	global $mysqli;
 	$file_id = intval($file_id);
-	$pr = $mysqli->query("select * from print_files_queue where file_id=$file_id");
+	$pr = $mysqli->query("select * from print_files_queue where file_id=$file_id order by id desc");
 	$ret = array();
 	while (($row = $pr->fetch_assoc()) != NULL) {
 		$ret[] = $row;

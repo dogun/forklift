@@ -11,6 +11,10 @@ foreach ($queues as $q) {
 	if ($q['status'] == PRINT_FILES_STATUS::INIT->value)
 		$qps[$q['printer_id']] = 1;
 }
+$ps_i = array();
+foreach ($ps as $p) {
+	$ps_i[$p['id']] = $p;
+}
 
 $pids = @$_POST['printer'];
 if (is_array($pids)) {
@@ -31,7 +35,7 @@ if (is_array($pids)) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>选择打印机</title>
+    <title>分配打印机</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -69,6 +73,31 @@ if (is_array($pids)) {
 </head>
 
 <body>
+
+    <h1>分配历史</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>打印机</th>
+                <th>分配时间</th>
+                <th>状态</th>
+            </tr>
+        </thead>
+        <tbody>
+<?php
+foreach ($qps as $p) {
+?>
+            <tr>
+                <td><?php echo $ps_i[$p['printer_id']]; ?></td>
+                <td><?php echo $p['created']; ?></td>
+                <td><?php echo $p['status']; ?></td>
+            </tr>
+<?php
+}
+?>
+        </tbody>
+    </table>
+
     <h1>打印机列表</h1>
 	<form action="print_file.php" method="post">
 	<input type="hidden" name="id" value="<?php echo $id;?>" />
