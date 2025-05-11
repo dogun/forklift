@@ -4,6 +4,18 @@ include('auth.php');
 
 $id = @$_REQUEST['id'];
 
+$pids = @$_POST['printer'];
+if (is_array($pids)) {
+	foreach ($pids as $pid) {
+		$pid = intval($pid);
+		if (@$qps[$pid]) {
+			//
+		}else {
+			_insert_print_files_queue($id, $pid, PRINT_FILES_STATUS::INIT->value);
+		}
+	}
+}
+
 $action = @$_GET['action'];
 if ($action == 'delete') {
 	$q_id = $_GET['q_id'];
@@ -21,18 +33,6 @@ foreach ($queues as $q) {
 $ps_i = array();
 foreach ($ps as $p) {
 	$ps_i[$p['id']] = $p;
-}
-
-$pids = @$_POST['printer'];
-if (is_array($pids)) {
-	foreach ($pids as $pid) {
-		$pid = intval($pid);
-		if (@$qps[$pid]) {
-			//
-		}else {
-			_insert_print_files_queue($id, $pid, PRINT_FILES_STATUS::INIT->value);
-		}
-	}
 }
 ?>
 
