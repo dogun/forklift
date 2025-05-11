@@ -3,6 +3,13 @@ include('inc.php');
 include('auth.php');
 
 $id = @$_REQUEST['id'];
+
+$action = @$_GET['action'];
+if ($action == 'delete') {
+	$q_id = $_GET['q_id'];
+	_update_print_files_queue_status($q_id, PRINT_FILES_STATUS::DELETED->value);
+}
+
 $ps = _query_all_printers();
 $file = _query_file($id);
 $queues = _query_print_files_queue_by_file_id($id);
@@ -81,6 +88,7 @@ if (is_array($pids)) {
                 <th>打印机</th>
                 <th>分配时间</th>
                 <th>状态</th>
+				<th>操作</th>
             </tr>
         </thead>
         <tbody>
@@ -91,6 +99,7 @@ foreach ($queues as $p) {
                 <td><?php echo $ps_i[$p['printer_id']]['name']; ?></td>
                 <td><?php echo $p['created']; ?></td>
                 <td><?php echo $p['status']; ?></td>
+				<td><?php if ($p['status'] != PRINT_FILES_STATUS::DELETED->value) {?><a href="print_file.php?id=<?php echo $id; ?>&q_id=<?php echo $p['id']; ?>&action=delete">删除</a><?php } ?></td>
             </tr>
 <?php
 }
