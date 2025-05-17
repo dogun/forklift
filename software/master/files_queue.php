@@ -89,7 +89,7 @@ foreach($fs as $f) {
 foreach ($queues as $p) {
 ?>
             <tr>
-				<td><?php echo $fs_i[$p['file_id']]; ?></td>
+				<td><?php echo $fs_i[$p['file_id']]['name']; ?></td>
                 <td><?php echo $ps_i[$p['printer_id']]['name']; ?></td>
                 <td><?php echo $p['created']; ?></td>
                 <td><?php echo $p['status']; ?></td>
