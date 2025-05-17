@@ -93,7 +93,7 @@ foreach ($queues as $p) {
                 <td><?php echo $ps_i[$p['printer_id']]['name']; ?></td>
                 <td><?php echo $p['created']; ?></td>
                 <td><?php echo $p['status']; ?></td>
-				<td><?php if ($p['status'] != PRINT_FILES_STATUS::DELETED->value) {?><a href="print_file.php?id=<?php echo $id; ?>&q_id=<?php echo $p['id']; ?>&action=delete">删除</a><?php } ?></td>
+				<td><?php if ($p['status'] != PRINT_FILES_STATUS::DELETED->value) {?><a href="files_queue.php?q_id=<?php echo $p['id']; ?>&action=delete">删除</a><?php } ?></td>
             </tr>
 <?php
 }
