@@ -390,6 +390,16 @@ function _query_print_files_queue_by_file_id($file_id) {
 	return $ret;
 }
 
+function _query_all_print_files_queues() {
+	global $mysqli;
+	$pr = $mysqli->query("select * from print_files_queue order by id desc");
+	$ret = array();
+	while (($row = $pr->fetch_assoc()) != NULL) {
+		$ret[] = $row;
+	}
+	return $ret;
+}
+
 function _update_print_files_queue_status($f_id, $status) {
 	global $mysqli;
 	$f_id = intval($f_id);
