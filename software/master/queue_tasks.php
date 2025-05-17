@@ -67,6 +67,10 @@ $at = _query_all_tasks();
 </head>
 
 <body>
+	<p>
+		<a href="queue_log.php" target="_blank">队列日志</a>
+		<a href="log.php" target="_blank">调用日志</a>
+	</p>
     <h1>执行队列</h1>
     <table id="infoTable">
         <thead>

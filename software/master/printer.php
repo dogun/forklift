@@ -133,10 +133,9 @@ $bs = _query_all_boards();
 		<a href="logout.php">退出</a>
 	</p>
 	<p>
-		<a href="queue_tasks.php" target="_blank">执行队列</a>
-		<a href="queue_log.php" target="_blank">队列日志</a>
-		<a href="log.php" target="_blank">调用日志</a>
-		<a href="files.php" target="_blank">文件管理</a>
+		<a href="queue_tasks.php" target="_blank">叉车执行队列</a>
+		<a href="files.php" target="_blank">打印文件管理</a>
+		
 	</p>
     <h1>打印机监控面板</h1>
     <!-- 打印机列表表格 -->

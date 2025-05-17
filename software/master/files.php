@@ -50,6 +50,9 @@ $fs = _query_all_print_files();
 </head>
 
 <body>
+	<p>
+		<a href="files_queue.php" target="_blank">打印顺序</a>
+	</p>
     <h2>文件上传</h2>
     <form action="files.php" method="post" enctype="multipart/form-data">
         <input type="file" name="file">
