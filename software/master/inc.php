@@ -267,9 +267,7 @@ function _upload_printer_file($host, $port, $file_id) {
 
 	// 构造 POST 数据（使用 CURLFile）
 	$postData = [
-	    'file' => new CURLFile($filePath, mime_content_type($filePath), basename($filePath)),
-	    // 可添加其他表单字段，例如：
-	    'param1' => 'value1'
+	    'file' => new CURLFile($filePath, mime_content_type($filePath), basename($filePath).'.gcode'),
 	];
 
 	curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);
@@ -280,15 +278,18 @@ function _upload_printer_file($host, $port, $file_id) {
 	// 执行请求
 	$response = curl_exec($ch);
 
+	$res = false;
 	// 错误处理
 	if ($response === false) {
 	    echo 'Error: ' . curl_error($ch);
 	} else {
-	    echo 'Response: ' . $response;
+	    $res = json_decode($response, true);
 	}
 
 	// 关闭会话
 	curl_close($ch);
+
+	return $res;
 }
 
 function _query_printer_info($host, $port) {
@@ -458,7 +459,8 @@ function _update_print_files_queue_status($f_id, $status) {
 	$f_id = intval($f_id);
 	$status = PRINT_FILES_STATUS::from($status)->value;
 	$sql = "update print_files_queue set status='$status', modified=CURRENT_TIMESTAMP() where id=$f_id";
-	$mysqli->query($sql);
+	$r = $mysqli->query($sql);
+	return $r;
 }
 
 #test
