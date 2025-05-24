@@ -31,21 +31,23 @@ while (true) {
 			if ($s1 == 'ready' && ($s2 == 'standby' || $s2 == 'complete')) {
 				$file_ex = false;
 				$fs = _query_printer_files($p['host'], $p['port']);
-				$files = $fs['files'];
+				$files = $fs['result']['files'];
 				foreach ($files as $file) {
-					if ($file['filename'] == $file_id) {
+					if ($file['filename'] == $file_id.'.gcode') {
 						$file_ex = true;
 					}
 				}
 				if ($file_ex == false) {
+					__log('start upload file:'.$file_id);
 					_upload_printer_file($p['host'], $p['port'], $file_id);
-					__log('upload file:'.$file_id);
+					__log('uploaded file:'.$file_id);
 				}
-				$r = _update_task_status($task['id'], PRINT_FILES_STATUS::PRINTING->value);
+				$r = _update_print_files_queue_status($task['id'], PRINT_FILES_STATUS::PRINTING->value);
 				if (!$r) { 
 					__log('update task status error:'.var_dump($r));
 				}
-				_log(LOG_LEVEL::INFO->value, "PRINT QUEUE RUN:$task_id $res", 0, M_TYPE::QUEUE->value);
+				_log(LOG_LEVEL::INFO->value, "PRINT QUEUE RUN:$task_id $r", 0, M_TYPE::QUEUE->value);
+				__log('print:'.$file_id.', printer:'.$p['name']);
 			} else {
 				__log('printer busy:'.$p['name'].' '.$s1.' '.$s2);
 			}
