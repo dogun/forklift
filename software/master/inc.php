@@ -248,6 +248,49 @@ function _remote_run($call_id, $call_type, $target_id, $action, $url) {
 	return $res;
 }
 
+function _query_printer_files($host, $port) {
+	$url = "http://$host:$port/server/files/directory?path=gcodes/&extended=true";
+	$res = file_get_contents($url);
+	$data = json_decode($res, true);
+	return $data;
+}
+
+function _upload_printer_file($host, $port, $file_id) {
+	// 初始化 cURL
+	$ch = curl_init();
+	// 要上传的文件路径
+	$filePath = '/root/files/'.$file_id;
+
+	// 设置 cURL 选项
+	curl_setopt($ch, CURLOPT_URL, "http://$host:$port/server/files/upload");
+	curl_setopt($ch, CURLOPT_POST, true);
+
+	// 构造 POST 数据（使用 CURLFile）
+	$postData = [
+	    'file' => new CURLFile($filePath, mime_content_type($filePath), basename($filePath)),
+	    // 可添加其他表单字段，例如：
+	    'param1' => 'value1'
+	];
+
+	curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);
+
+	// 设置返回响应而不是直接输出
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+	// 执行请求
+	$response = curl_exec($ch);
+
+	// 错误处理
+	if ($response === false) {
+	    echo 'Error: ' . curl_error($ch);
+	} else {
+	    echo 'Response: ' . $response;
+	}
+
+	// 关闭会话
+	curl_close($ch);
+}
+
 function _query_printer_info($host, $port) {
 	$url = "http://$host:$port/printer/info";
 	$res = file_get_contents($url);
@@ -393,6 +436,16 @@ function _query_print_files_queue_by_file_id($file_id) {
 function _query_all_print_files_queues() {
 	global $mysqli;
 	$pr = $mysqli->query("select * from print_files_queue order by id desc");
+	$ret = array();
+	while (($row = $pr->fetch_assoc()) != NULL) {
+		$ret[] = $row;
+	}
+	return $ret;
+}
+
+function _query_all_ready_print_files_queues() {
+	global $mysqli;
+	$pr = $mysqli->query("select * from print_files_queue where status='INIT' order by id asc");
 	$ret = array();
 	while (($row = $pr->fetch_assoc()) != NULL) {
 		$ret[] = $row;
