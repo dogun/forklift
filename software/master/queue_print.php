@@ -44,7 +44,7 @@ while (true) {
 				}
 				
 				$r = _start_print($p['host'], $p['port'], $file_id);
-				if ($r == 'ok') {
+				if ($r['result'] == 'ok') {
 					$r = _update_print_files_queue_status($task['id'], PRINT_FILES_STATUS::PRINTING->value);
 					if (!$r) { 
 						__log('update task status error:'.var_dump($r));

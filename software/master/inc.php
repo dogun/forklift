@@ -278,7 +278,7 @@ function _upload_printer_file($host, $port, $file_id) {
 	// 执行请求
 	$response = curl_exec($ch);
 
-	$res = $response;
+	$res = false;
 	// 错误处理
 	if ($response === false) {
 	    echo 'Error: ' . curl_error($ch);
@@ -323,12 +323,12 @@ function _start_print($host, $port, $file_id) {
 	// 执行请求
 	$response = curl_exec($ch);
 
-	$res = $response;
+	$res = false;
 	// 错误处理
 	if ($response === false) {
 	    echo 'Error: ' . curl_error($ch);
 	} else {
-	    $res = $response;
+	    $res = json_decode($response, true);
 	}
 
 	// 关闭会话
