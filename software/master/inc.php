@@ -304,7 +304,7 @@ function _start_print($host, $port, $file_id) {
 	$ch = curl_init();
 
 	// 目标 URL
-	curl_setopt($ch, CURLOPT_URL, 'http://$host:$port/printer/print/start');
+	curl_setopt($ch, CURLOPT_URL, "http://$host:$port/printer/print/start");
 
 	// 启用 POST 请求
 	curl_setopt($ch, CURLOPT_POST, true);
