@@ -42,12 +42,18 @@ while (true) {
 					_upload_printer_file($p['host'], $p['port'], $file_id);
 					__log('uploaded file:'.$file_id);
 				}
-				$r = _update_print_files_queue_status($task['id'], PRINT_FILES_STATUS::PRINTING->value);
-				if (!$r) { 
-					__log('update task status error:'.var_dump($r));
+				
+				$r = _start_print($p['host'], $p['port'], $file_id);
+				if ($r == 'ok') {
+					$r = _update_print_files_queue_status($task['id'], PRINT_FILES_STATUS::PRINTING->value);
+					if (!$r) { 
+						__log('update task status error:'.var_dump($r));
+					}
+					_log(LOG_LEVEL::INFO->value, "PRINT QUEUE RUN:$task_id $r", 0, M_TYPE::QUEUE->value);
+					__log('print:'.$file_id.', printer:'.$p['name']);
+				} else {
+					__log('print error:'.$r.', '.$file_id.', printer:'.$p['name']);
 				}
-				_log(LOG_LEVEL::INFO->value, "PRINT QUEUE RUN:$task_id $r", 0, M_TYPE::QUEUE->value);
-				__log('print:'.$file_id.', printer:'.$p['name']);
 			} else {
 				__log('printer busy:'.$p['name'].' '.$s1.' '.$s2);
 			}

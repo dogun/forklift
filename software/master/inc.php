@@ -299,6 +299,12 @@ function _query_printer_info($host, $port) {
 	return $data;
 }
 
+function _start_print($host, $port, $file_id) {
+	$url = "http://$host:$port/printer/print/start?filename=${file_id}.gocde";
+	$res = file_get_contents($url);
+	return $res;
+}
+
 function _query_printer_objects($host, $port, $objects) {
 	$ch = curl_init();
 	curl_setopt($ch, CURLOPT_URL, "http://$host:$port/printer/objects/query");
