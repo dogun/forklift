@@ -300,8 +300,40 @@ function _query_printer_info($host, $port) {
 }
 
 function _start_print($host, $port, $file_id) {
-	$url = "http://$host:$port/printer/print/start?filename=${file_id}.gocde";
-	$res = file_get_contents($url);
+	// 初始化 cURL
+	$ch = curl_init();
+
+	// 目标 URL
+	curl_setopt($ch, CURLOPT_URL, 'http://$host:$port/printer/print/start');
+
+	// 启用 POST 请求
+	curl_setopt($ch, CURLOPT_POST, true);
+
+	// 构造 POST 数据（键值对）
+	$postData = [
+	    'filename' => $file_id.'.gcode'
+	];
+
+	// 设置 POST 数据（自动编码为 application/x-www-form-urlencoded）
+	curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($postData));
+
+	// 获取响应结果（不直接输出）
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+	// 执行请求
+	$response = curl_exec($ch);
+
+	$res = false;
+	// 错误处理
+	if (curl_errno($ch)) {
+	    echo 'Error: ' . curl_error($ch);
+	} else {
+	    $res = $response;
+	}
+
+	// 关闭会话
+	curl_close($ch);
+	
 	return $res;
 }
 
