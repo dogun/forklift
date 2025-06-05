@@ -98,7 +98,7 @@ if ($action == 'call_forklift') {
 		die('PRINTER NOT FOUND:'.$printer);
 	}
 	$printer_id = $r['id'];
-	$f_id = intval(str_replace($macro, '.gcode', ''));
+	$f_id = intval(str_replace('.gcode', '', $macro));
 	$r = _update_print_files_queue_status1($printer_id, $f_id, PRINT_FILES_STATUS::PRINTING->value, PRINT_FILES_STATUS::FINISHED->value);
 	echo $r;
 }
