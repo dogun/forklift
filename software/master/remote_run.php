@@ -92,4 +92,13 @@ if ($action == 'call_forklift') {
 	$board_id = $b_id;
 	_queue($printer_id, $forklift_id, $board_id, QUEUE_ACTION::BOARD_CALL_FORKLIFT->value, $macro);
 	echo 'QUEUED';
+} elseif ($action == 'update_printer_status') {
+	$r = _query_printer_by_name($printer);
+	if (!$r) {
+		die('PRINTER NOT FOUND:'.$printer);
+	}
+	$printer_id = $r['id'];
+	$f_id = intval(str_replace($macro, '.gcode', ''));
+	$r = _update_print_files_queue_status1($printer_id, $f_id, PRINT_FILES_STATUS::PRINTING, PRINT_FILES_STATUS::FINISHED);
+	echo $r;
 }
