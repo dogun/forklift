@@ -99,6 +99,6 @@ if ($action == 'call_forklift') {
 	}
 	$printer_id = $r['id'];
 	$f_id = intval(str_replace($macro, '.gcode', ''));
-	$r = _update_print_files_queue_status1($printer_id, $f_id, PRINT_FILES_STATUS::PRINTING, PRINT_FILES_STATUS::FINISHED);
+	$r = _update_print_files_queue_status1($printer_id, $f_id, PRINT_FILES_STATUS::PRINTING->value, PRINT_FILES_STATUS::FINISHED->value);
 	echo $r;
 }
