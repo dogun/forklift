@@ -507,7 +507,7 @@ function _update_print_files_queue_status1($printer_id, $file_id, $status, $new_
 	$p_id = intval($printer_id);
 	$status = PRINT_FILES_STATUS::from($status)->value;
 	$new_status = PRINT_FILES_STATUS::from($new_status)->value;
-	$sql = "update print_files_queue set status='$status', modified=CURRENT_TIMESTAMP() where printer_id=$p_id and file_id=$file_id and status='$status'";
+	$sql = "update print_files_queue set status='$new_status', modified=CURRENT_TIMESTAMP() where printer_id=$p_id and file_id=$file_id and status='$status'";
 	$r = $mysqli->query($sql);
 	return $r;
 }
