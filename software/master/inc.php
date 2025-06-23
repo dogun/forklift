@@ -292,9 +292,23 @@ function _upload_printer_file($host, $port, $file_id) {
 	return $res;
 }
 
+function _file_get_contents($url) {
+	$ch=curl_init();
+	$timeout=1;
+
+	curl_setopt($ch, CURLOPT_URL, $url);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	curl_setopt($ch, CURLOPT_TIMEOUT, $timeout);
+	curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
+
+	$result=curl_exec($ch);
+	curl_close($ch);
+	return $result;
+}
+
 function _query_printer_info($host, $port) {
 	$url = "http://$host:$port/printer/info";
-	$res = file_get_contents($url);
+	$res = _file_get_contents($url);
 	$data = json_decode($res, true);
 	return $data;
 }
