@@ -356,6 +356,7 @@ function _query_printer_objects($host, $port, $objects) {
 	curl_setopt($ch, CURLOPT_URL, "http://$host:$port/printer/objects/query");
 	curl_setopt($ch, CURLOPT_POST, true);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch, CURLOPT_TIMEOUT, 1);
 	$data = array(
 		'objects' => $objects
 	);
